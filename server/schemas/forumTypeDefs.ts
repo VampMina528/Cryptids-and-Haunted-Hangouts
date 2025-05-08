@@ -1,0 +1,1 @@
+// Forum GraphQL types

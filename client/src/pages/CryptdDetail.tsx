@@ -1,0 +1,1 @@
+// Detail view for one/each cryptid
