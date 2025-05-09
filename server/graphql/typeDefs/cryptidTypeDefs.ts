@@ -1,0 +1,1 @@
+// TypeDefs for cyrptids and sightings

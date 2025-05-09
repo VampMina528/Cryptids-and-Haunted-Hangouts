@@ -1,0 +1,1 @@
+// Handles GraphQL queries/mutations related to cryptids and sightings
