@@ -88,7 +88,16 @@ button:hover {
   box-shadow: 0 0 10px #111;
 }
 
-/* === ANIMATIONS === */
+/* === HEADER === */
+.site-header {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #444;
+  box-shadow: 0 0 10px #660000;
+}
+
+/* === FLICKER EFFECT === */
 @keyframes flicker {
   0%, 100% { opacity: 1; }
   45% { opacity: 0.4; }
@@ -99,4 +108,20 @@ button:hover {
   animation: flicker 1.5s infinite;
   color: #ff6666;
   text-shadow: 0 0 8px red;
+}
+
+/* === LANTERN ANIMATION === */
+.lantern-container {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 64px;
+  height: 64px;
+  animation: flicker 2s infinite alternate;
+  z-index: 10;
+}
+
+.lantern-container img {
+  width: 100%;
+  filter: drop-shadow(0 0 10px orange);
 }

@@ -1,8 +1,8 @@
-// Landing page
 import { useEffect } from 'react';
 import MapView from '../components/MapView';
 import CodenameForm from '../components/CodenameForm';
 import Header from '../components/Header';
+import lantern from '../assets/lantern.png';
 import '../styles/spooky.css';
 
 const HomePage = () => {
@@ -27,6 +27,10 @@ const HomePage = () => {
           </div>
         </aside>
       </main>
+
+      <div className="lantern-container">
+        <img src={lantern} alt="Flickering Lantern" />
+      </div>
     </div>
   );
 };
