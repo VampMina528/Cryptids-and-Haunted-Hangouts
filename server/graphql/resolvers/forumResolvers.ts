@@ -1,0 +1,1 @@
+// Handles GraphQl queries/mutations for the communitiy forums
