@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "node dist/server.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "build": "tsc"
+  },
   "dependencies": {
     "apollo-server-express": "^3.13.0",
     "cors": "^2.8.5",
