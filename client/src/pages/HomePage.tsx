@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import MapView from '../components/MapView';
+import GlobeComponent from '../components/Globe'; 
 import CodenameForm from '../components/CodenameForm';
 import Header from '../components/Header';
-import lantern from '../assets/lantern.png';
+import lantern from '../assets/lantern.jpg';
 import '../styles/spooky.css';
 
 const HomePage = () => {
@@ -16,7 +16,7 @@ const HomePage = () => {
 
       <main className="main-content">
         <section className="map-section">
-          <MapView />
+          <GlobeComponent /> 
         </section>
 
         <aside className="side-panel">
