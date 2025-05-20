@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import GlobeView from '../components/GlobeView';
 import '../styles/spooky.css';
 
 const cryptids = [
@@ -171,8 +172,8 @@ const cryptids = [
 
 const CryptidPage = () => {
   return (
-    <div className="cryptid-list-container">
-      <h1 className="flicker">Explore Cryptids</h1>
+    <div className="homepage-container">
+      <GlobeView />
       <div className="cryptid-cards">
         {cryptids.map((cryptid) => (
           <div key={cryptid.id} className="cryptid-card">
