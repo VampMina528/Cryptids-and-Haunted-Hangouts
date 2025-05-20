@@ -6,13 +6,14 @@ export const GET_CRYPTID_BY_ID = gql`
     getCryptidById(id: $id) {
       id
       name
-      description
       location
+      description
       image
       soundUrl
       hauntedPlace {
         name
-        description
+        image
+        story
       }
     }
   }
