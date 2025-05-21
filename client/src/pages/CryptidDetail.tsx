@@ -1,54 +1,62 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_CRYPTID_BY_ID } from '../graphql/queries';
+import { useParams, Link } from 'react-router-dom';
+import { cryptids } from '../pages/CryptidPage';
+import { useState } from 'react';
 import '../styles/spooky.css';
 
 const CryptidDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const cryptid = cryptids.find((c) => c.id === id);
+  const [imageIndex, setImageIndex] = useState(0);
 
-  const { loading, error, data } = useQuery(GET_CRYPTID_BY_ID, {
-    variables: { id },
-  });
+  if (!cryptid) return <p className="flicker">Cryptid not found in this realm 🕯</p>;
 
-  if (loading) return <p className="flicker">Summoning cryptid...</p>;
-  if (error) return <p className="flicker">Cryptid vanished in the mist 🕯</p>;
+  const nextImage = () => {
+    setImageIndex((prev) => (prev + 1) % cryptid.images.length);
+  };
 
-  const cryptid = data?.getCryptidById;
+  const prevImage = () => {
+    setImageIndex((prev) => (prev - 1 + cryptid.images.length) % cryptid.images.length);
+  };
 
   return (
     <div className="cryptid-detail-container">
       <h2 className="flicker">{cryptid.name}</h2>
-      <img
-        src={cryptid.image || '/placeholder-cryptid.jpg'}
-        alt={cryptid.name}
-        className="cryptid-image"
-      />
-      {cryptid.soundUrl && (
-        <button
-          onClick={() => window.open(cryptid.soundUrl, '_blank')}
-          className="sound-button"
-        >
-          🔊 Listen to {cryptid.name}
-        </button>
-      )}
+
+      <div className="image-carousel" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={prevImage} className="arrow-button">&#8592;</button>
+        <img
+          src={cryptid.images[imageIndex]}
+          alt={`${cryptid.name} ${imageIndex + 1}`}
+          className="cryptid-image"
+          style={{ margin: '0 1rem' }}
+        />
+        <button onClick={nextImage} className="arrow-button">&#8594;</button>
+      </div>
+
       <p><strong>Location:</strong> {cryptid.location}</p>
       <p><strong>Legend:</strong> {cryptid.description}</p>
-      {cryptid.hauntedPlace && (
-        <div className="haunt-highlight">
-          <h3 className="flicker">Nearby Haunted Stay: {cryptid.hauntedPlace.name}</h3>
-          <img
-            src={cryptid.hauntedPlace.image || '/placeholder-haunt.jpg'}
-            alt={cryptid.hauntedPlace.name}
-            className="haunt-image"
-          />
-          {cryptid.hauntedPlace.story?.split('\n').map((para: string, i: number) => (
-            <p key={i}>{para}</p>
-          ))}
-          <button onClick={() => alert(`Navigating to haunted location near ${cryptid.location}`)}>
-            View on Map
-          </button>
+
+      {cryptid.videos.length > 0 && (
+        <div className="video-links">
+          <h3>Related Videos</h3>
+          <ul>
+            {cryptid.videos.map((url, i) => (
+              <li key={i}>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {decodeURIComponent(new URL(url).pathname.split('/').pop() || `Watch Video ${i + 1}`)}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
+
+      <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+        <Link to="/" className="view-detail-button">&#8592; Back to Homepage</Link>
+        <button className="view-detail-button" onClick={() => alert(`Show haunted location near ${cryptid.location}`)}>
+          Haunted Hangout in this location &#8594;
+        </button>
+      </div>
     </div>
   );
 };

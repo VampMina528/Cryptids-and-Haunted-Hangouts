@@ -5,7 +5,11 @@ body {
   color: #e2e2e2;
   margin: 0;
   padding: 0;
-  /* Removed overflow: hidden to allow scroll */
+  overflow-y: auto;
+}
+
+* {
+  font-family: 'Creepster', cursive;
 }
 
 /* === GENERAL LAYOUT === */
@@ -18,44 +22,24 @@ body {
 .main-content {
   display: flex;
   flex: 1;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 1rem;
+  overflow: hidden;
 }
 
-/* === NEW: Cryptid Grid === */
-.cryptid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  width: 100%;
-  max-width: 1400px;
-  margin: 2rem auto;
-}
-
-/* === NEW: Cryptid Card === */
-.cryptid-card {
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 0 8px #55000088;
-  text-align: center;
-}
-
-.cryptid-thumb {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-/* === MAP VIEW (Globe) === */
-#globe-canvas {
-  width: 100%;
-  height: 600px;
-  background: black;
+.map-section {
+  flex: 3;
+  background-color: #000;
   position: relative;
-  z-index: 1;
+}
+
+.side-panel {
+  flex: 1;
+  background: linear-gradient(to bottom, #111 0%, #1a1a1a 100%);
+  border-left: 2px solid #333;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* === TEXT === */
@@ -65,10 +49,11 @@ h1, h2, h3 {
   text-shadow: 2px 2px 4px #000000;
 }
 
-p, label, input, button {
+p, label, input, button, a, li {
   font-family: 'Creepster', cursive;
   font-size: 1rem;
   color: #e2e2e2;
+  text-decoration: none;
 }
 
 input, button {
@@ -83,6 +68,13 @@ input, button {
 button:hover {
   background-color: #330000;
   cursor: pointer;
+}
+
+/* === MAP VIEW (Globe) === */
+.map-section > div, .globe-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 
 /* === CODENAME FORM === */
@@ -137,4 +129,47 @@ button:hover {
 .lantern-container img {
   width: 100%;
   filter: drop-shadow(0 0 10px orange);
+}
+
+/* === DETAIL VIEW === */
+.cryptid-detail-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.cryptid-image {
+  max-width: 400px;
+  max-height: 300px;
+  border: 2px solid #444;
+  box-shadow: 0 0 10px #000;
+}
+
+.arrow-button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #ff4444;
+  cursor: pointer;
+}
+
+.view-detail-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #555;
+  background-color: #222;
+  color: #e2e2e2;
+  text-decoration: none;
+  box-shadow: 0 0 10px #88000022;
+}
+
+.view-detail-button:hover {
+  background-color: #330000;
+}
+.globe-icon {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 6px red);
+}
+
+.globe-icon:hover {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 12px crimson);
 }
