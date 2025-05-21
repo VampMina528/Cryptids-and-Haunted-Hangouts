@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CryptidPage from './pages/CryptidPage';
 import CryptidDetail from './pages/CryptidDetail';
-import './App.css';
+import './styles/spooky.css';
 
-const App = (): JSX.Element => {
+function App() {
   return (
     <Router>
       <Routes>
@@ -12,6 +12,6 @@ const App = (): JSX.Element => {
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;

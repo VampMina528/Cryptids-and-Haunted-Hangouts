@@ -6,7 +6,6 @@ import '../styles/spooky.css';
 const CryptidDetail = () => {
   const { id } = useParams<{ id: string }>();
   const cryptid = cryptids.find((c) => c.id === id);
-
   const [imageIndex, setImageIndex] = useState(0);
 
   if (!cryptid) return <p className="flicker">Cryptid not found in this realm 🕯</p>;
@@ -23,14 +22,15 @@ const CryptidDetail = () => {
     <div className="cryptid-detail-container">
       <h2 className="flicker">{cryptid.name}</h2>
 
-      <div className="image-carousel">
-        <button onClick={prevImage}>&lt;</button>
+      <div className="image-carousel" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={prevImage} className="arrow-button">&#8592;</button>
         <img
           src={cryptid.images[imageIndex]}
           alt={`${cryptid.name} ${imageIndex + 1}`}
           className="cryptid-image"
+          style={{ margin: '0 1rem' }}
         />
-        <button onClick={nextImage}>&gt;</button>
+        <button onClick={nextImage} className="arrow-button">&#8594;</button>
       </div>
 
       <p><strong>Location:</strong> {cryptid.location}</p>
@@ -43,7 +43,7 @@ const CryptidDetail = () => {
             {cryptid.videos.map((url, i) => (
               <li key={i}>
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                  📺 Watch Video {i + 1}
+                  {decodeURIComponent(new URL(url).pathname.split('/').pop() || `Watch Video ${i + 1}`)}
                 </a>
               </li>
             ))}
@@ -51,8 +51,11 @@ const CryptidDetail = () => {
         </div>
       )}
 
-      <div style={{ marginTop: '2rem' }}>
-        <Link to="/" className="view-detail-button">🔙 Back to Homepage</Link>
+      <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+        <Link to="/" className="view-detail-button">&#8592; Back to Homepage</Link>
+        <button className="view-detail-button" onClick={() => alert(`Show haunted location near ${cryptid.location}`)}>
+          Haunted Hangout in this location &#8594;
+        </button>
       </div>
     </div>
   );
