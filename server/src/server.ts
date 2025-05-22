@@ -4,13 +4,14 @@ import type { Request, Response } from 'express'
 import db from './config/connection.js';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
-import {typeDefs, resolvers } from './schemas/resolvers/index.js'
+//import { cryptidTypeDefs } from './schemas/typeDefs/index.js'
+import {typeDefs, resolvers } from './schemas/index.js'
 import { authenticateToken } from './utils/auth.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const server = new ApolloServer({
-  typeDefs,
+ typeDefs,
   resolvers
 });
 

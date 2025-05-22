@@ -1,1 +1,0 @@
-// Merges all resolvers into a single object for the ApolloServer

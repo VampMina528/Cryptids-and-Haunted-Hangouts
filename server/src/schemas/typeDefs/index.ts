@@ -1,1 +1,0 @@
-// combines all GraphQl type definitions
