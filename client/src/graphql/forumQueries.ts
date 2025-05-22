@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GET_ALL_FORUMS_POSTS = gql`
+export const GET_ALL_FORUM_POSTS = gql`
     query GetAllForumPosts {
         getAllForumPosts {
             id
