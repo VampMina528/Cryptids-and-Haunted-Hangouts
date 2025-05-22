@@ -38,6 +38,14 @@ const ForumPostForm = () => {
             setContent("");
             setShowForm(false);
         }
+
+        if (!codename) {
+            return (
+                <div className="forum-warning">
+                    <p className="warning-text">🕯️ In order to post you must <strong>JOIN US</strong>. 🕯️</p>
+                </div>
+            );
+        }
     };
 
     return (
