@@ -46,7 +46,7 @@ const typeDefs = `
 
     type Mutation {
         addForumPost(codename: String!, content: String!): ForumPost
-
+        deleteForumPost(id: ID!, codename: String!): Boolean
     }    
 `
 export default typeDefs
