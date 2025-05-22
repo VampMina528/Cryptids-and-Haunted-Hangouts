@@ -21,3 +21,9 @@ export const ADD_FORUM_POST = gql`
         }
     }
 `;
+
+export const DELETE_FORUM_POST = gql`
+    mutation DeleteForumPost($id: ID!) {
+        deleteForumPost(id: $id)
+    }
+`;
