@@ -1,6 +1,6 @@
-import ForumPost from "../../models/ForumPost.js";
+import ForumPost from "../models/ForumPost.js";
 
-const ForumResolvers = {
+const resolvers = {
     Query: {
         getAllForumPosts: async () => {
             return await ForumPost.find().sort({ createdAt: -1 });
@@ -14,4 +14,4 @@ const ForumResolvers = {
     }
 };
 
-export default ForumResolvers;
+export default resolvers;
