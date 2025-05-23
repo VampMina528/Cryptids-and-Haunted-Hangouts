@@ -40,10 +40,13 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             codename: userFormData.codename,
             email: userFormData.email,
             password: userFormData.password
-            }
+          }
         }
       });
+
       Auth.login(data.addUser.token);
+      handleModalClose();
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
