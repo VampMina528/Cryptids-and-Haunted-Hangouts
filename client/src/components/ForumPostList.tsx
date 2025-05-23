@@ -8,7 +8,7 @@ const ForumPostList = () => {
         refetchQueries: [{ query: GET_ALL_FORUM_POSTS }],
     });
 
-    const codename = localStorage.getItem("cyrptidCodename");
+    const codename = localStorage.getItem("cryptidCodename");
 
     if (loading) return <p>Loading spooky chatter... </p>;
     if (error) return <p>Error loading forum posts</p>;
