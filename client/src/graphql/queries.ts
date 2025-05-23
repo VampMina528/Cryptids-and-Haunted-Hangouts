@@ -18,3 +18,14 @@ export const GET_CRYPTID_BY_ID = gql`
     }
   }
 `;
+
+export const GET_ALL_FORUM_POSTS = gql`
+    query GetAllForumPosts {
+        getAllForumPosts {
+            id
+            codename
+            content
+            createdAt
+        }
+    }
+`;
