@@ -13,7 +13,7 @@ const GlobeView = () => {
   useEffect(() => {
     if (!globeRef.current) return;
 
-    globeInstance.current = new Globe(globeRef.current)
+    globeInstance.current = new Globe(globeRef.current) 
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
       .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 1000)
@@ -21,10 +21,10 @@ const GlobeView = () => {
         cryptids.map((c) => ({
           ...c,
           lat: getLatitude(c.name),
-          lng: getLongitude(c.name)
+          lng: getLongitude(c.name),
         }))
       )
-      .htmlElement((d) => {
+      .htmlElement((d: any) => {
         const cryptid = d as typeof cryptids[number];
         const el = document.createElement('div');
         el.innerHTML = `
@@ -40,17 +40,16 @@ const GlobeView = () => {
             <div class="globe-label">${cryptid.name}</div>
           </div>
         `;
-
-        // ✅ Bonus fix: ensure correct placement and interaction
         el.style.cursor = 'pointer';
         el.style.zIndex = '10';
         el.style.pointerEvents = 'auto';
-        el.style.position = 'absolute'; // critical fix for placement
+        el.style.position = 'absolute';
 
         el.onclick = () => {
           if (context) context.selectCryptid(cryptid.id);
           navigate(`/cryptids/${cryptid.id}`);
         };
+
         return el;
       });
 
@@ -60,6 +59,13 @@ const GlobeView = () => {
     controls.enableZoom = true;
     controls.enablePan = false;
     controls.update();
+
+    return () => {
+      if (globeInstance.current && globeRef.current) {
+        globeRef.current.innerHTML = '';
+        globeInstance.current = null;
+      }
+    };
   }, [navigate, context]);
 
   return <div ref={globeRef} className="globe-container" />;

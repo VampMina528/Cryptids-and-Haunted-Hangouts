@@ -2,6 +2,10 @@ import Header from '../components/Header';
 import GlobeView from '../components/GlobeView';
 import '../styles/spooky.css';
 
+type CryptidPageProps = {
+  selectedId: string | null;
+};
+
 export const cryptids = [
   {
     id: 'mothman',
@@ -192,7 +196,7 @@ export const cryptids = [
   },
 ];
 
-const CryptidPage = () => {
+const CryptidPage: React.FC<{ selectedId: string | null }> = ({ selectedId }) => {
   return (
     <div className="homepage-container">
       <Header />

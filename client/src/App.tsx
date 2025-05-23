@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
 import CryptidPage from './pages/CryptidPage';
 import CryptidDetail from './pages/CryptidDetail';
+import MusicPlayer from './components/MusicPlayer';
 import './styles/spooky.css';
 
 export const CryptidContext = createContext<{
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<CryptidPage selectedId={selectedId} />} />
           <Route path="/cryptids/:id" element={<CryptidDetail />} />
         </Routes>
+        <MusicPlayer />
       </Router>
     </CryptidContext.Provider>
   );
