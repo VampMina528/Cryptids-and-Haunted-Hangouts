@@ -14,7 +14,8 @@ const Header = () => {
     if (!token || !codename) {
       setWarningMessage('🕯️ You must Join Us before entering the forum.');
       return;
-  };
+  }
+  
     setWarningMessage("");
     navigate("/forums");
 };
