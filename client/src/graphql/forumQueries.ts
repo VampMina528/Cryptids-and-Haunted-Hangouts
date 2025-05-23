@@ -16,7 +16,7 @@ export const ADD_FORUM_POST = gql`
         addForumPost(codename: $codename, content: $content) {
             id
             codename
-            conent
+            content
             createdAt
         }
     }
