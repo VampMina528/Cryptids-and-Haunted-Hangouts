@@ -12,7 +12,8 @@
   "main": "index.js",
   "devDependencies": {
     "@types/node": "^22.15.18",
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "eslint-plugin-import": "^2.31.0"
   },
   "scripts": {
     "dev": "vite",
