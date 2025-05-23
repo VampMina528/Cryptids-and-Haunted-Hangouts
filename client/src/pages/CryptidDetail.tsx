@@ -3,13 +3,27 @@ import { cryptids } from '../pages/CryptidPage';
 import { useState } from 'react';
 import '../styles/spooky.css';
 
+const cryptidToHauntedMap: Record<string, string> = {
+  'mothman': 'rucker-mansion',
+  'sasquatch': 'rucker-mansion',
+  'skinwalker': 'ufo-valley',
+  'headless-men': 'leatherock-hotel',
+  'el-chupacabra': 'urraca-mesa',
+  'curupira': 'dream-beach',
+  'loch-ness-monster': 'glamis-castle',
+  'aswang': 'diplomat-hotel',
+  'jersey-devil': 'ghost-lake',
+  'beast-of-bray-road': 'brumder-mansion',
+  'dark-watchers': 'queen-anne-hotel'
+};
+
 const CryptidDetail = () => {
   const { id } = useParams<{ id: string }>();
   const cryptid = cryptids.find((c) => c.id === id);
   const [imageIndex, setImageIndex] = useState(0);
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
 
-  if (!cryptid) return <p className="flicker">Cryptid not found in this realm 🕯</p>;
+  if (!cryptid) return <p className="flicker">Cryptid not found in this realm 🔯</p>;
 
   const hasMultipleImages = cryptid.images.length > 1;
 
@@ -22,7 +36,7 @@ const CryptidDetail = () => {
   };
 
   const getYouTubeID = (url: string): string => {
-    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?]+)/);
+    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)\S+|youtu\.be\/)([\w-]{11})/);
     return match ? match[1] : '';
   };
 
@@ -79,7 +93,7 @@ const CryptidDetail = () => {
 
       <div className="image-carousel">
         {hasMultipleImages && (
-          <button onClick={prevImage} className="arrow-button">&#8592;</button>
+          <button onClick={prevImage} className="arrow-button">←</button>
         )}
         <img
           src={cryptid.images[imageIndex]}
@@ -87,7 +101,7 @@ const CryptidDetail = () => {
           className="cryptid-image"
         />
         {hasMultipleImages && (
-          <button onClick={nextImage} className="arrow-button">&#8594;</button>
+          <button onClick={nextImage} className="arrow-button">→</button>
         )}
       </div>
 
@@ -104,7 +118,10 @@ const CryptidDetail = () => {
 
               return (
                 <li key={i} className="video-entry">
-                  <button className="video-title-button" onClick={() => setActiveVideo(i === activeVideo ? null : i)}>
+                  <button
+                    className="video-title-button"
+                    onClick={() => setActiveVideo(i === activeVideo ? null : i)}
+                  >
                     {title}
                   </button>
                   {activeVideo === i && youtubeID && (
@@ -118,7 +135,9 @@ const CryptidDetail = () => {
                     </div>
                   )}
                   {activeVideo === i && !youtubeID && (
-                    <a href={url} target="_blank" rel="noopener noreferrer">{title}</a>
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      {title}
+                    </a>
                   )}
                 </li>
               );
@@ -128,10 +147,15 @@ const CryptidDetail = () => {
       )}
 
       <div className="detail-buttons">
-        <Link to="/" className="view-detail-button">&#8592; Back to Homepage</Link>
-        <button className="view-detail-button" onClick={() => alert(`Show haunted location near ${cryptid.location}`)}>
-          Haunted Hangout in this location &#8594;
-        </button>
+        <Link to="/" className="view-detail-button">← Back to Homepage</Link>
+        {cryptid.id in cryptidToHauntedMap && (
+          <Link
+            to={`/haunted/${cryptidToHauntedMap[cryptid.id]}`}
+            className="view-detail-button"
+          >
+            Haunted Hangout in this Location →
+          </Link>
+        )}
       </div>
     </div>
   );
