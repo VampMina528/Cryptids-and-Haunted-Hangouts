@@ -9,7 +9,7 @@ export const ADD_USER = gql`
                 _id
                 codename
                 email
-                forumPosts?
+                forumPosts
                 
             }
         }
