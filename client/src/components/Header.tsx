@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import JoinUsForm from './CreateCodename';
+import LoginForm from './LoginForm';
 
 const Header = () => {
   const navigate = useNavigate();
+
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
 
   const handleForumClick = () => {
@@ -20,7 +23,7 @@ const Header = () => {
     navigate("/forums");
 };
 
-  return (
+   return (
     <header className="site-header">
       <h1 className="flicker site-title">Creepy Cryptids & Haunted Hangouts</h1>
       <p className="header-subtitle">
@@ -35,29 +38,43 @@ const Header = () => {
       {warningMessage && (
         <div className="forum-warning">
           <p className="warning-text">{warningMessage}</p>
-          <p className="warning-text">Already have a codename?{" "}
-            <span
-              onClick={() => {
-                setShowCreateModal(true);
-                setWarningMessage("");
-              }}
+          <p style={{ marginTop: "0.5rem" }}>
+            Already have your codename?{" "}
+            <button
               style={{
+                background: "none",
+                border: "none",
+                color: "#ff4444",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color: "#ff9999",
               }}
-              >
-                Click here to Login
-              </span>
-            </p>
+              onClick={() => {
+                setShowLoginModal(true);
+                setWarningMessage(""); // Hide the warning when login opens
+              }}
+            >
+              Click here to login
+            </button>
+          </p>
         </div>
       )}
 
-    {showCreateModal && (
-      <div className="modal-overlay">
+      {(showCreateModal || showLoginModal) && (
+        <div className="modal-overlay">
         <div className="modal-content">
-          <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />
-            <button className="close-modal" onClick={() =>setShowCreateModal(false)}>Close</button>
+          {showCreateModal && <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />}
+          {showLoginModal && <LoginForm handleModalClose={() => setShowLoginModal(false)} />}
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <button
+              className="close-modal"
+              onClick={() => {
+                setShowCreateModal(false);
+                setShowLoginModal(false);
+              }}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     )}
@@ -66,29 +83,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-
-// **Optional <Styling>
-
-// .forum-warning {
-//   margin-top: 1rem;
-//   padding: 1rem;
-//   background-color: rgba(128, 0, 0, 0.2);
-//   border: 2px solid crimson;
-//   color: white;
-//   text-align: center;
-//   font-family: 'Creepster', cursive;
-//   animation: flicker-glow 2s infinite;
-// }
-
-// .warning-text {
-//   font-size: 1.2rem;
-// }
-
-// @keyframes flicker-glow {
-//   0% { text-shadow: 0 0 4px crimson; }
-//   50% { text-shadow: 0 0 10px red; }
-//   100% { text-shadow: 0 0 4px crimson; }
-// }
-// </Styling>
