@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { GET_ALL_FORUM_POSTS } from "../graphql/queries";
-import { ADD_FORUM_POST } from "../graphql/mutations"
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { GET_ALL_FORUM_POSTS } from '../graphql/queries';
+import { ADD_FORUM_POST } from '../graphql/mutations'
 
 const ForumPostForm = () => {
     const [content, setContent] = useState("");

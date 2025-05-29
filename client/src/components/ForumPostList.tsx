@@ -1,6 +1,6 @@
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_ALL_FORUM_POSTS } from "../graphql/queries";
-import { DELETE_FORUM_POST } from "../graphql/mutations";
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_ALL_FORUM_POSTS } from '../graphql/queries';
+import { DELETE_FORUM_POST } from '../graphql/mutations';
 
 const ForumPostList = () => {
     const { data, loading, error } = useQuery(GET_ALL_FORUM_POSTS);

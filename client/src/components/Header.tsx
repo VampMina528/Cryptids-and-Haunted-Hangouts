@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import JoinUsForm from "./CreateCodename";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import JoinUsForm from './CreateCodename';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,6 +35,21 @@ const Header = () => {
       {warningMessage && (
         <div className="forum-warning">
           <p className="warning-text">{warningMessage}</p>
+          <p className="warning-text">Already have a codename?{" "}
+            <span
+              onClick={() => {
+                setShowCreateModal(true);
+                setWarningMessage("");
+              }}
+              style={{
+                textDecoration: "underline",
+                cursor: "pointer",
+                color: "#ff9999",
+              }}
+              >
+                Click here to Login
+              </span>
+            </p>
         </div>
       )}
 
