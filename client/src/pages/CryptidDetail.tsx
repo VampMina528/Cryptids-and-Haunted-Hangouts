@@ -4,14 +4,14 @@ import { useState } from 'react';
 import '../styles/spooky.css';
 
 const cryptidToHauntedMap: Record<string, string> = {
-  'mothman': 'rucker-mansion',
-  'sasquatch': 'rucker-mansion',
-  'skinwalker': 'ufo-valley',
+  mothman: 'trans-allegheny',
+  sasquatch: 'rucker-mansion',
+  skinwalker: 'ufo-valley',
   'headless-men': 'leatherock-hotel',
   'el-chupacabra': 'urraca-mesa',
-  'curupira': 'dream-beach',
+  curupira: 'dream-beach',
   'loch-ness-monster': 'glamis-castle',
-  'aswang': 'diplomat-hotel',
+  aswang: 'diplomat-hotel',
   'jersey-devil': 'ghost-lake',
   'beast-of-bray-road': 'brumder-mansion',
   'dark-watchers': 'queen-anne-hotel'
@@ -36,7 +36,7 @@ const CryptidDetail = () => {
   };
 
   const getYouTubeID = (url: string): string => {
-    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)\S+|youtu\.be\/)([\w-]{11})/);
+    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
     return match ? match[1] : '';
   };
 

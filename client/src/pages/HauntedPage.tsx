@@ -30,12 +30,12 @@ const HauntedPage = () => {
 
   return (
     <div className="full-page">
-      <h1>{haunted.name}</h1>
+      <h2 className="flicker">{haunted.name}</h2>
       <h3>{haunted.location}</h3>
 
       <div className="image-carousel">
         <button className="arrow-button" onClick={handlePrevImage}>
-          ⬅
+          ←
         </button>
         <img
           src={`/icons/${haunted.images[currentImageIndex]}`}
@@ -43,7 +43,7 @@ const HauntedPage = () => {
           className="cryptid-image"
         />
         <button className="arrow-button" onClick={handleNextImage}>
-          ➡
+          →
         </button>
       </div>
 
@@ -53,20 +53,20 @@ const HauntedPage = () => {
         href={haunted.externalLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="external-link"
+        className="view-detail-button"
       >
-        Learn more about this location
+        Learn more about this location →
       </a>
 
-      <div className="button-group">
-        <button onClick={() => navigate('/')} className="nav-button">
-          Back to Homepage
+      <div className="detail-buttons">
+        <button onClick={() => navigate('/')} className="view-detail-button">
+          ← Back to Homepage
         </button>
         <button
-          onClick={() => navigate(`/cryptid/${hauntedToCryptidMap[haunted.id]}`)}
-          className="nav-button"
+          onClick={() => navigate(`/cryptids/${hauntedToCryptidMap[haunted.id]}`)}
+          className="view-detail-button"
         >
-          Back to Cryptid
+          Back to Cryptid →
         </button>
       </div>
     </div>

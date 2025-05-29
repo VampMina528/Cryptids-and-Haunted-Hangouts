@@ -1,5 +1,5 @@
-export const cryptidToHauntedMap: Record<string, string> = {
-  mothman: 'trans-allegheny-asylum',
+const cryptidToHauntedMap: Record<string, string> = {
+  mothman: 'trans-allegheny',
   sasquatch: 'rucker-mansion',
   skinwalker: 'ufo-valley',
   'headless-men': 'leatherock-hotel',
@@ -11,3 +11,5 @@ export const cryptidToHauntedMap: Record<string, string> = {
   'beast-of-bray-road': 'brumder-mansion',
   'dark-watchers': 'queen-anne-hotel',
 };
+
+export default cryptidToHauntedMap;
