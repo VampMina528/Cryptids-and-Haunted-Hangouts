@@ -4,6 +4,7 @@ import CryptidPage from "./pages/CryptidPage";
 import CryptidDetail from "./pages/CryptidDetail";
 import HauntedPage from "./pages/HauntedPage";
 import Header from "./components/Header";
+import MusicPlayer from "./components/MusicPlayer"; // <- You will create this file
 import "./styles/spooky.css";
 
 export const CryptidContext = createContext<{
@@ -17,10 +18,11 @@ function App() {
     <CryptidContext.Provider value={{ selectCryptid: setSelectedId }}>
       <Router>
         <Header />
+        <MusicPlayer /> {/* Always visible on all pages */}
         <Routes>
           <Route path="/" element={<CryptidPage selectedId={selectedId} />} />
           <Route path="/cryptids/:id" element={<CryptidDetail />} />
-          <Route path="/haunted/:id" element={<HauntedPage />} /> 
+          <Route path="/haunted/:id" element={<HauntedPage />} />
         </Routes>
       </Router>
     </CryptidContext.Provider>
