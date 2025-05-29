@@ -1,14 +1,20 @@
 // Mongoose model for Cryptid entries
 import { Schema, model, type Document } from 'mongoose';
 
-export interface CryptidDocument extends Document {
 
-}
-
-const cryptidSchema = new Schema<CryptidDocument>({
+const cryptidSchema = new Schema({
+    name: {
+        type: String
+    },
+    location: {
+        type: String
+    },
+    description: {
+        type: String
+    }
 
 })
 
-const Cryptid = model<CryptidDocument>('Cryptid', cryptidSchema)
+const Cryptid = model('Cryptid', cryptidSchema)
 
 export default Cryptid

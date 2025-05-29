@@ -22,7 +22,7 @@ const CodenameForm = () => {
         placeholder="e.g., NightOwl"
         required
       />
-      <button type="submit">Save</button>
+      <button type="submit">Login</button>
     </form>
   );
 };

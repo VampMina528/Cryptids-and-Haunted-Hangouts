@@ -12,7 +12,12 @@ import { fileURLToPath } from 'url';
 
 const server = new ApolloServer({
  typeDefs,
-  resolvers
+  resolvers, 
+  // context: ({ req }) => {
+  //   const token = req.headers.authorization?.split(' ')[1];
+  //   const user = token ? decodeToken(token) : null;
+  //   return { user }
+  //}
 });
 
 const startApolloServer = async () => {
