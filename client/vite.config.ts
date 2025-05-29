@@ -7,5 +7,10 @@ export default defineConfig({
   //root: '.',
   build: {
     outDir: '../client/dist', // 
+  },
+  server: {
+    proxy: {
+      '/graphql': 'http://localhost:3001'
+    }
   }
 });
