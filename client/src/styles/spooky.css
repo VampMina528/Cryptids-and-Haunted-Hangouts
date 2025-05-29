@@ -320,6 +320,20 @@ canvas {
   margin-left: auto;
   margin-right: auto;
 }
+.header-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.header-buttons button {
+  width: auto;
+  max-width: 200px;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+}
+
 
 /* === FLICKER EFFECT === */
 @keyframes flicker {

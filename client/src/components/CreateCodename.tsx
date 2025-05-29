@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-
 import { ADD_USER } from '../graphql/mutations';
 import Auth from '../context/AuthContext';
 import type { User } from '../models/User';
@@ -10,27 +9,28 @@ import type { User } from '../models/User';
 const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
 
   const [userFormData, setUserFormData] = useState<User>({ codename: "", email: "", password: "" });
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const [addUser] = useMutation(ADD_USER)
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setValidated(true);
 
-    if (!form.checkValidity() || userFormData.password !== confirmPassword) {
-      event.stopPropagation();
-      setValidated(true);
+    if (
+      !userFormData.codename ||
+      !userFormData.email ||
+      !userFormData.password ||
+      confirmPassword !== userFormData.password
+    )
       return;
-    }
     
     try {
       const { data } = await addUser({
@@ -39,8 +39,8 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             codename: userFormData.codename,
             email: userFormData.email,
             password: userFormData.password
-          },
-        },
+          }
+        }
       });
 
       Auth.login(data.addUser.token);
@@ -49,20 +49,11 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
       console.error(err);
       setShowAlert(true);
     }
-
-    setUserFormData({
-      codename: "",
-      email: "",
-      password: "",
-    });
-    setConfirmPassword("");
-    setValidated(false);
   };
 
   return (
       <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant="danger">
           Something went wrong with your signup!
         </Alert>
@@ -76,6 +67,7 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             onChange={handleInputChange}
             value={userFormData.codename || ""}
             required
+            isInvalid={validated && !userFormData.codename}
           />
           <Form.Control.Feedback type="invalid">Codename is required!</Form.Control.Feedback>
         </Form.Group>
@@ -89,6 +81,7 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             onChange={handleInputChange}
             value={userFormData.email || ""}
             required
+            isInvalid={validated && !userFormData.email}
           />
           <Form.Control.Feedback type="invalid">Email is required!</Form.Control.Feedback>
         </Form.Group>
@@ -102,6 +95,7 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             onChange={handleInputChange}
             value={userFormData.password || ""}
             required
+            isInvalid={validated && !userFormData.password}
           />
           <Form.Control.Feedback type="invalid">Password is required!</Form.Control.Feedback>
         </Form.Group>
@@ -115,6 +109,7 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             value={confirmPassword}
             required
+            isInvalid={validated && confirmPassword !== userFormData.password}
           />
           <Form.Control.Feedback type="invalid">
             Confirm Password is required!
@@ -122,12 +117,16 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         </Form.Group>
 
         <Button
-          disabled={!(userFormData.codename && userFormData.email && userFormData.password)}
           type="submit"
-          variant="success">
+          variant="success"
+            className="w-100"
+        >
           Submit
         </Button>
       </Form>
+      <Button className="w-100 mt-3" variant="danger" onClick={handleModalClose}>
+        Close
+      </Button>
     </>
   );
 };
