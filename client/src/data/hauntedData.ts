@@ -5,7 +5,7 @@ export const hauntedData = [
     location: 'Everett, Washington',
     description:
       'Built in 1905, this Victorian mansion is rumored to be haunted by the ghost of Jane Rucker. Visitors have reported sightings of her apparition, strange sounds, and unexplained movements throughout the house.',
-    images: ['Rucker-Mansion.webp', 'Ruckerghost.webp', 'ruckerhaunt.webp'],
+    images: ['Rucker-Mansion.jpg', 'RuckerIn.jpg', 'Ruckerghost.webp', 'RuckerBannister.jpg'],
     externalLink: 'https://www.atlasobscura.com/places/rucker-mansion',
   },
   {
@@ -59,8 +59,8 @@ export const hauntedData = [
     location: 'Uintah Basin, Utah',
     description:
       'Located near Skinwalker Ranch, this area is rife with reports of shapeshifters, floating lights, and electromagnetic anomalies. The campground itself is said to be haunted by phantom voices.',
-    images: ['UFOValley.webp', 'SkinwalkerRanchSign.webp', 'ATVCampfire.webp'],
-    externalLink: 'https://www.atlasobscura.com/places/skinwalker-ranch',
+    images: ['UFO-Campground.jpg', 'ufovalleycampground.jpg', 'ufovalleylights.jpg'],
+    externalLink: 'https://www.ufovalleycampground.com/',
   },
   {
     id: 'leatherock-hotel',
@@ -68,7 +68,7 @@ export const hauntedData = [
     location: 'Cherryvale, Kansas',
     description:
       'This historic inn is haunted by ghostly animals, disembodied voices, and a mysterious woman in white. Guests report doors opening on their own and shadowy figures in the halls.',
-    images: ['LeatherockExterior.webp', 'LeatherockGhostRoom.webp', 'LeatherockShadow.webp'],
+    images: ['Leatherlockbrick.jpg', 'leatherlocktan.png', 'Leatherock-Hotel-and-Museum-Cherryvale.jpg'],
     externalLink: 'https://www.hauntedplaces.org/item/leatherock-hotel/',
   },
   {
@@ -86,7 +86,7 @@ export const hauntedData = [
     location: 'Scotland, UK',
     description:
       'This historic castle is known as one of Scotland’s most haunted. It hosts spirits like the Grey Lady, the Tongueless Woman, and a mischievous pageboy who plays tricks on guests.',
-    images: ['GlamisCastle.webp', 'GreyLady.webp', 'TonguelessGhost.webp'],
+    images: ['GlamisCastle.jpg', 'GlamisCastleSittingRoom.jpg', 'GlamisCastleRoom.webp'],
     externalLink: 'https://www.glamis-castle.co.uk/ghosts/',
   },
   {

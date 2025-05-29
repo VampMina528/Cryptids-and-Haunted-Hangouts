@@ -1,12 +1,16 @@
 /* === BASE === */
-html, body {
+html, body, #root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
 
 body, html {
   pointer-events: auto !important;
@@ -34,6 +38,7 @@ h1, h2, h3 {
   margin-top: 0;
   z-index: 10;
   position: relative;
+  text-align: center;
 }
 
 p, label, input, button, a, li {
@@ -41,6 +46,7 @@ p, label, input, button, a, li {
   font-size: 1rem;
   color: #e2e2e2;
   text-decoration: none;
+  text-align: center;
 }
 
 /* === BUTTONS === */
@@ -66,27 +72,28 @@ button:hover {
   box-sizing: border-box;
 }
 
+/* === GLOBE === */
 .map-section {
-  flex: 1;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: calc(100vh - 140px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
+  z-index: 0;
   overflow: hidden;
 }
 
-/* === GLOBE === */
 .globe-container {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  z-index: 1;
 }
 
 canvas {
@@ -167,34 +174,19 @@ canvas {
 }
 
 /* === DETAIL VIEW === */
-.cryptid-detail-container {
-  width: 100%;
-  min-height: 100vh;
-  padding-top: 10rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  text-align: center;
-}
-
+.cryptid-detail-container,
 .full-page {
   width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
-  max-width: 100vw;
-  padding-top: 10rem;
-  padding-bottom: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  margin: 0 auto;
+  padding: 10rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  overflow-x: hidden;
+  text-align: center;
 }
 
 .image-carousel {
@@ -202,19 +194,24 @@ canvas {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
   max-width: 100%;
-  margin: 1rem 0;
+  margin: 1rem auto;
 }
 
 .cryptid-image {
-  max-width: 80vw;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
   max-height: 60vh;
   min-height: 250px;
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 0 12px #000;
   transition: opacity 0.3s ease-in-out;
+  margin: 0 auto;
 }
+
 
 .arrow-button {
   background: transparent;
@@ -256,7 +253,7 @@ canvas {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 
 .video-title-button {
@@ -266,7 +263,7 @@ canvas {
   background: none;
   border: none;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
   margin: 0.5rem 0;
   padding: 0;
   width: 100%;
@@ -296,12 +293,11 @@ canvas {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1rem;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  z-index: 999;
+  padding: 1rem 1rem 0.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
   text-align: center;
+  backdrop-filter: blur(4px);
 }
 
 .site-title {
@@ -334,61 +330,44 @@ canvas {
   text-shadow: 0 0 8px red;
 }
 
-/* === LANTERN === */
-.lantern-container {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  width: 64px;
-  height: 64px;
-  animation: flicker 2s infinite alternate;
-  z-index: 10;
+/* === RESPONSIVE FIXES === */
+@media (max-width: 768px) {
+  .cryptid-detail-container,
+  .full-page {
+    padding-top: 7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .cryptid-image {
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .video-player iframe {
+    height: 200px;
+  }
+
+  .detail-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
 }
 
-.lantern-container img {
-  width: 100%;
-  filter: drop-shadow(0 0 10px orange);
-}
-/* === GLOBE OVERLAY FIXES === */
-body, html {
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-}
-
-#root {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.map-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.globe-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem 1rem 0.5rem;
-  background: rgba(0, 0, 0, 0.4); 
-  z-index: 9999;
-  text-align: center;
-  backdrop-filter: blur(4px);
+@media (max-height: 500px) {
+  .cryptid-detail-container,
+  .full-page {
+    padding-top: 6rem;
+  }
 }

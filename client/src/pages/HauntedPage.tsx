@@ -15,7 +15,7 @@ const HauntedPage = () => {
   }, [id]);
 
   if (!haunted) {
-    return <div className="full-page">Haunted location not found.</div>;
+    return <div className="full-page flicker">Haunted location not found 👻</div>;
   }
 
   const handleNextImage = () => {
@@ -29,34 +29,40 @@ const HauntedPage = () => {
   };
 
   return (
-    <div className="full-page">
-      <h2 className="flicker">{haunted.name}</h2>
+    <div className="cryptid-detail-container full-page">
+      <h1 className="flicker">{haunted.name}</h1>
       <h3>{haunted.location}</h3>
 
       <div className="image-carousel">
-        <button className="arrow-button" onClick={handlePrevImage}>
-          ←
-        </button>
+        {haunted.images.length > 1 && (
+          <button className="arrow-button" onClick={handlePrevImage}>
+            ⬅
+          </button>
+        )}
         <img
           src={`/icons/${haunted.images[currentImageIndex]}`}
-          alt={`${haunted.name} view`}
+          alt={`${haunted.name} view ${currentImageIndex + 1}`}
           className="cryptid-image"
         />
-        <button className="arrow-button" onClick={handleNextImage}>
-          →
-        </button>
+        {haunted.images.length > 1 && (
+          <button className="arrow-button" onClick={handleNextImage}>
+            ➡
+          </button>
+        )}
       </div>
 
-      <p className="cryptid-detail-container">{haunted.description}</p>
+      <p className="cryptid-description">{haunted.description}</p>
 
-      <a
-        href={haunted.externalLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="view-detail-button"
-      >
-        Learn more about this location →
-      </a>
+      {haunted.externalLink && (
+        <a
+          href={haunted.externalLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="external-link"
+        >
+          Learn more about this location
+        </a>
+      )}
 
       <div className="detail-buttons">
         <button onClick={() => navigate('/')} className="view-detail-button">
