@@ -4,14 +4,14 @@ import { useState } from 'react';
 import '../styles/spooky.css';
 
 const cryptidToHauntedMap: Record<string, string> = {
-  mothman: 'trans-allegheny',
-  sasquatch: 'rucker-mansion',
-  skinwalker: 'ufo-valley',
+  'mothman': 'trans-allegheny',
+  'sasquatch': 'rucker-mansion',
+  'skinwalker': 'ufo-valley',
   'headless-men': 'leatherock-hotel',
   'el-chupacabra': 'urraca-mesa',
-  curupira: 'dream-beach',
+  'curupira': 'dream-beach',
   'loch-ness-monster': 'glamis-castle',
-  aswang: 'diplomat-hotel',
+  'aswang': 'diplomat-hotel',
   'jersey-devil': 'ghost-lake',
   'beast-of-bray-road': 'brumder-mansion',
   'dark-watchers': 'queen-anne-hotel'
@@ -23,7 +23,7 @@ const CryptidDetail = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
 
-  if (!cryptid) return <p className="flicker">Cryptid not found in this realm 🔯</p>;
+  if (!cryptid) return <p className="flicker full-page">Cryptid not found in this realm</p>;
 
   const hasMultipleImages = cryptid.images.length > 1;
 
@@ -36,8 +36,16 @@ const CryptidDetail = () => {
   };
 
   const getYouTubeID = (url: string): string => {
-    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
-    return match ? match[1] : '';
+    const patterns = [
+      /(?:youtube\.com\/watch\?v=)([\w-]{11})/,
+      /(?:youtube\.com\/embed\/)([\w-]{11})/,
+      /(?:youtu\.be\/)([\w-]{11})/
+    ];
+    for (const pattern of patterns) {
+      const match = url.match(pattern);
+      if (match && match[1]) return match[1];
+    }
+    return '';
   };
 
   const videoTitles: Record<string, string[]> = {
@@ -117,29 +125,26 @@ const CryptidDetail = () => {
               const youtubeID = getYouTubeID(url);
 
               return (
-                <li key={i} className="video-entry">
-                  <button
-                    className="video-title-button"
-                    onClick={() => setActiveVideo(i === activeVideo ? null : i)}
-                  >
-                    {title}
-                  </button>
-                  {activeVideo === i && youtubeID && (
-                    <div className="video-player">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${youtubeID}`}
-                        title={title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </div>
-                  )}
-                  {activeVideo === i && !youtubeID && (
-                    <a href={url} target="_blank" rel="noopener noreferrer">
+                youtubeID && (
+                  <li key={i} className="video-entry">
+                    <button
+                      className="video-title-button"
+                      onClick={() => setActiveVideo(i === activeVideo ? null : i)}
+                    >
                       {title}
-                    </a>
-                  )}
-                </li>
+                    </button>
+                    {activeVideo === i && (
+                      <div className="video-player">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${youtubeID}`}
+                          title={title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    )}
+                  </li>
+                )
               );
             })}
           </ul>

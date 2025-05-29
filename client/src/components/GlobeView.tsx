@@ -1,6 +1,6 @@
 import { useRef, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Globe from 'globe.gl';
+import createGlobe from 'globe.gl';
 import { cryptids } from '../pages/CryptidPage';
 import { CryptidContext } from '../App';
 
@@ -13,10 +13,7 @@ const GlobeView = () => {
   useEffect(() => {
     if (!globeRef.current) return;
 
-    const instance = new Globe(globeRef.current);
-    globeInstance.current = instance;
-
-    instance
+    const instance = new createGlobe(globeRef.current)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
       .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
@@ -56,6 +53,8 @@ const GlobeView = () => {
         return el;
       });
 
+    globeInstance.current = instance;
+
     const controls = instance.controls();
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5;
@@ -65,8 +64,10 @@ const GlobeView = () => {
     controls.update();
 
     const handleResize = () => {
-      instance.width(window.innerWidth);
-      instance.height(window.innerHeight);
+      if (globeRef.current) {
+        instance.width(globeRef.current.clientWidth);
+        instance.height(globeRef.current.clientHeight);
+      }
     };
 
     handleResize();
@@ -86,30 +87,30 @@ function getLatitude(name: string): number {
   const match = cryptids.find((c) => c.name === name);
   return match?.location.includes('Brazil') ? -23.5 :
     match?.location.includes('Philippines') ? 16.4 :
-    match?.location.includes('Scotland') ? 57.3 :
-    match?.location.includes('New Jersey') ? 39.5 :
-    match?.location.includes('New Mexico') ? 36.5 :
-    match?.location.includes('Kansas') ? 37.6 :
-    match?.location.includes('Wisconsin') ? 43.0 :
-    match?.location.includes('California') ? 35.4 :
-    match?.location.includes('Utah') ? 40.2 :
-    match?.location.includes('Washington') ? 47.5 :
-    match?.location.includes('West Virginia') ? 38.9 : 20;
+      match?.location.includes('Scotland') ? 57.3 :
+        match?.location.includes('New Jersey') ? 39.5 :
+          match?.location.includes('New Mexico') ? 36.5 :
+            match?.location.includes('Kansas') ? 37.6 :
+              match?.location.includes('Wisconsin') ? 43.0 :
+                match?.location.includes('California') ? 35.4 :
+                  match?.location.includes('Utah') ? 40.2 :
+                    match?.location.includes('Washington') ? 47.5 :
+                      match?.location.includes('West Virginia') ? 38.9 : 20;
 }
 
 function getLongitude(name: string): number {
   const match = cryptids.find((c) => c.name === name);
   return match?.location.includes('Brazil') ? -46.6 :
     match?.location.includes('Philippines') ? 120.6 :
-    match?.location.includes('Scotland') ? -4.5 :
-    match?.location.includes('New Jersey') ? -74.7 :
-    match?.location.includes('New Mexico') ? -105.2 :
-    match?.location.includes('Kansas') ? -95.3 :
-    match?.location.includes('Wisconsin') ? -88.5 :
-    match?.location.includes('California') ? -121.7 :
-    match?.location.includes('Utah') ? -109.6 :
-    match?.location.includes('Washington') ? -122.3 :
-    match?.location.includes('West Virginia') ? -82.1 : 0;
+      match?.location.includes('Scotland') ? -4.5 :
+        match?.location.includes('New Jersey') ? -74.7 :
+          match?.location.includes('New Mexico') ? -105.2 :
+            match?.location.includes('Kansas') ? -95.3 :
+              match?.location.includes('Wisconsin') ? -88.5 :
+                match?.location.includes('California') ? -121.7 :
+                  match?.location.includes('Utah') ? -109.6 :
+                    match?.location.includes('Washington') ? -122.3 :
+                      match?.location.includes('West Virginia') ? -82.1 : 0;
 }
 
 export default GlobeView;

@@ -2,10 +2,6 @@ import Header from '../components/Header';
 import GlobeView from '../components/GlobeView';
 import '../styles/spooky.css';
 
-type CryptidPageProps = {
-  selectedId: string | null;
-};
-
 export const cryptids = [
   {
     id: 'mothman',
@@ -13,7 +9,7 @@ export const cryptids = [
     location: 'Point Pleasant, West Virginia',
     description:
       'In the shadows of Point Pleasant lurks a winged enigma. The Mothman — eyes glowing crimson — glides through the night air, foretelling doom. Its legend began during a flurry of sightings in 1966, culminating in the Silver Bridge collapse. Some say it still watches, waiting...',
-    icon: '/icons/Mothman-icon.jpg',
+    icon: '/icons/mothman-icon.jpg',
     images: [
       '/icons/mothman-icon.jpg',
       '/icons/mothman-main.jpg',
@@ -50,8 +46,8 @@ export const cryptids = [
     icon: '/icons/skinwalker.jpg',
     images: [
       '/icons/skinwalker.jpg',
-      '/icons/skinwalker-riding.jpg',
       '/icons/skinwalker-corpsey.jpg',
+      '/icons/skinwalker-riding.jpg',
     ],
     videos: [
       'https://www.youtube.com/watch?v=RYccS3r95GU',
@@ -98,9 +94,9 @@ export const cryptids = [
     location: 'São Paulo, Brazil',
     description:
       'Deep in the rainforest walks Curupira — backwards feet twisting tracks in tangled roots. He defends the forest with illusion and madness, punishing intruders with endless wandering.',
-    icon: '/icons/Curupira-icon.jpg',
+    icon: '/icons/curupira-icon.jpeg',
     images: [
-      '/icons/curupira-icon.jpg',
+      '/icons/curupira-icon.jpeg',
       '/icons/ian-matias-curupira.jpg',
       '/icons/art-curupira.jpg',
     ],
@@ -132,9 +128,9 @@ export const cryptids = [
     location: 'Baguio, Philippines',
     description:
       'As night falls in the Philippines, the Aswang awakens. Shape-shifting into winged beasts, it hunts expectant mothers, drinks blood, and drifts through roofs as smoke. Even the brave bolt doors tight.',
-    icon: '/icons/aswang-icon.jpg',
+    icon: '/icons/aswang.jpg',
     images: [
-      '/icons/aswang-icon.jpg',
+      '/icons/aswang.jpg',
       '/icons/aswang-wings.jpg',
       '/icons/aswang-manangal.jpg',
     ],
@@ -152,7 +148,7 @@ export const cryptids = [
     icon: '/icons/jersey-devil-icon.jpg',
     images: [
       '/icons/jersey-devil-icon.jpg',
-      '/icons/jersey_devil.jpg',
+      '/icons/jersey-devil.jpg',
       '/icons/jersey-devil-illustration.jpg',
     ],
     videos: [
@@ -166,7 +162,7 @@ export const cryptids = [
     location: 'Elkhorn, Wisconsin',
     description:
       'Something massive lurks near Bray Road — a snarling, upright wolf with human eyes. Sightings date to 1936. Locals warn: if you see it once, don’t look back.',
-    icon: '/icons/Bray-Road-Beast-icon.jpg',
+    icon: '/icons/bray-road-beast-icon.jpg',
     images: [
       '/icons/bray-road-beast-icon.jpg',
       '/icons/beastofbrayroad.jpg',
@@ -196,7 +192,7 @@ export const cryptids = [
   },
 ];
 
-const CryptidPage: React.FC<{ selectedId: string | null }> = ({ selectedId }) => {
+const CryptidPage: React.FC = () => {
   return (
     <div className="homepage-container">
       <Header />
