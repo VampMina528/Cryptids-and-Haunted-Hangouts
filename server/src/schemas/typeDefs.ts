@@ -4,10 +4,11 @@ const typeDefs = `
         codename: String!
         content: String!
         createdAt: String!
+        user: User
     }
 
     type User {
-        _id: ID!
+        id: ID!
         codename: String!
         email: String!
     }
@@ -32,10 +33,14 @@ const typeDefs = `
         description: String
     }
 
-    input AddUser {
+    input AddUserInput {
         codename: String!
         email: String!
         password: String!
+    }
+
+    input AddForumPostInput {
+        content: String!
     }
 
     type Query {
@@ -45,8 +50,11 @@ const typeDefs = `
     } 
 
     type Mutation {
-        addForumPost(codename: String!, content: String!): ForumPost
-        deleteForumPost(id: ID!, codename: String!): Boolean
+        addUser(input: AddUserInput!): Auth
+        loginUser(codename: String!, password: String!): Auth
+        addForumPost(input: AddForumPostInput!): ForumPost
+        updateForumPost(id: ID!, content: String!): ForumPost
+        deleteForumPost(id: ID!): Boolean
     }    
 `
 export default typeDefs

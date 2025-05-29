@@ -6,11 +6,9 @@ export const ADD_USER = gql`
         addUser(input: $input) {
             token
             user {
-                _id
+                id
                 codename
                 email
-                forumPosts
-                
             }
         }
     }
@@ -21,17 +19,17 @@ export const LOGIN_USER = gql`
         loginUser(codename: $codename, password: $password) {
             token
             user {
-                _id
+                id
                 codename
                 email
-                }
-            }   
-        }
-   `
+            }
+        }   
+    }
+`
 
 export const ADD_FORUM_POST = gql`
-    mutation AddForumPost($codename: String!, $content: String!) {
-        addForumPost(codename: $codename, content: $content) {
+    mutation addForumPost($input: AddForumPostInput!) {
+        addForumPost(input: $input) {
             id
             codename
             content
@@ -40,8 +38,19 @@ export const ADD_FORUM_POST = gql`
     }
 `;
 
+export const UPDATE_FORUM_POST = gql `
+    mutation updateForumPost ($id: ID!, $content: String!) {
+        updateForumPost(id: $id, content: $content) {
+            id
+            codename
+            content
+            createdAt
+        }
+    }
+`
+
 export const DELETE_FORUM_POST = gql`
-    mutation DeleteForumPost($id: ID!) {
+    mutation deleteForumPost($id: ID!) {
         deleteForumPost(id: $id)
     }
 `;

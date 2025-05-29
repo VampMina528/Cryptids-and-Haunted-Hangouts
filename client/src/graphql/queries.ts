@@ -12,10 +12,26 @@ export const GET_CRYPTID_BY_ID = gql`
       soundUrl
       hauntedPlace {
         name
-        image
-        story
+        description
       }
     }
+  }
+`;
+
+export const GET_ALL_CRYPTIDS = gql`
+  query GetAllCryptids {
+    getAllCryptids {
+      id
+      name
+      location
+      description
+      image
+      soundUrl
+      hauntedPlace {
+        name
+        description
+      }
+    } 
   }
 `;
 
