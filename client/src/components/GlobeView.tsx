@@ -13,10 +13,10 @@ const GlobeView = () => {
   useEffect(() => {
     if (!globeRef.current) return;
 
-    globeInstance.current = new Globe(globeRef.current) 
+    const instance = new Globe(globeRef.current)
       .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
-      .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 1000)
+      .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
       .htmlElementsData(
         cryptids.map((c) => ({
           ...c,
@@ -53,18 +53,27 @@ const GlobeView = () => {
         return el;
       });
 
-    const controls = globeInstance.current.controls();
-    controls.autoRotate = false;
-    controls.enableRotate = true;
+    globeInstance.current = instance;
+
+    const controls = instance.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
     controls.enableZoom = true;
+    controls.enableRotate = true;
     controls.enablePan = false;
     controls.update();
 
+    const handleResize = () => {
+      instance.width(window.innerWidth);
+      instance.height(window.innerHeight);
+
+    };
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      if (globeInstance.current && globeRef.current) {
-        globeRef.current.innerHTML = '';
-        globeInstance.current = null;
-      }
+      window.removeEventListener('resize', handleResize);
+      if (globeRef.current) globeRef.current.innerHTML = '';
+      globeInstance.current = null;
     };
   }, [navigate, context]);
 

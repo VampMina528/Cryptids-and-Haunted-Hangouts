@@ -1,12 +1,18 @@
-import { useParams } from 'react-router-dom';
-import { hauntedPlaces } from '../data/hauntedData';
+import { useParams, useNavigate } from 'react-router-dom';
+import { hauntedData } from '../data/hauntedData';
+import { hauntedToCryptidMap } from '../data/hauntedToCryptidMap';
 import '../styles/spooky.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const HauntedPage = () => {
   const { id } = useParams();
-  const haunted = hauntedPlaces.find((place) => place.id === id);
+  const navigate = useNavigate();
+  const haunted = hauntedData.find((place) => place.id === id);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [id]);
 
   if (!haunted) {
     return <div className="full-page">Haunted location not found.</div>;
@@ -26,12 +32,13 @@ const HauntedPage = () => {
     <div className="full-page">
       <h1>{haunted.name}</h1>
       <h3>{haunted.location}</h3>
+
       <div className="image-carousel">
         <button className="arrow-button" onClick={handlePrevImage}>
           ⬅
         </button>
         <img
-          src={haunted.images[currentImageIndex]}
+          src={`/icons/${haunted.images[currentImageIndex]}`}
           alt={`${haunted.name} view`}
           className="cryptid-image"
         />
@@ -39,7 +46,29 @@ const HauntedPage = () => {
           ➡
         </button>
       </div>
+
       <p className="cryptid-detail-container">{haunted.description}</p>
+
+      <a
+        href={haunted.externalLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="external-link"
+      >
+        Learn more about this location
+      </a>
+
+      <div className="button-group">
+        <button onClick={() => navigate('/')} className="nav-button">
+          Back to Homepage
+        </button>
+        <button
+          onClick={() => navigate(`/cryptid/${hauntedToCryptidMap[haunted.id]}`)}
+          className="nav-button"
+        >
+          Back to Cryptid
+        </button>
+      </div>
     </div>
   );
 };

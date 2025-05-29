@@ -349,3 +349,46 @@ canvas {
   width: 100%;
   filter: drop-shadow(0 0 10px orange);
 }
+/* === GLOBE OVERLAY FIXES === */
+body, html {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.globe-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 1rem 0.5rem;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 9999;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
