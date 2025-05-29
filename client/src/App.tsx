@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { createContext, useState } from 'react';
-import CryptidPage from './pages/CryptidPage';
-import CryptidDetail from './pages/CryptidDetail';
-import HauntedPage from './pages/HauntedPage'; 
-import './styles/spooky.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createContext, useState } from "react";
+import CryptidPage from "./pages/CryptidPage";
+import CryptidDetail from "./pages/CryptidDetail";
+import HauntedPage from "./pages/HauntedPage";
+import Header from "./components/Header";
+import "./styles/spooky.css";
 
 export const CryptidContext = createContext<{
   selectCryptid: (id: string) => void;
@@ -15,6 +16,7 @@ function App() {
   return (
     <CryptidContext.Provider value={{ selectCryptid: setSelectedId }}>
       <Router>
+        <Header />
         <Routes>
           <Route path="/" element={<CryptidPage selectedId={selectedId} />} />
           <Route path="/cryptids/:id" element={<CryptidDetail />} />
