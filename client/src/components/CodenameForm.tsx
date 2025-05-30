@@ -1,13 +1,16 @@
 import { useState } from 'react';
 
 const CodenameForm = () => {
-  const [codename, setCodename] = useState('');
+  const [codename, setCodename] = useState("");
+  const [error, setError] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (codename.trim()) {
-      localStorage.setItem('cryptidCodename', codename.trim());
-      alert(`Welcome, Agent ${codename}!`);
+      localStorage.setItem("cryptidCodename", codename.trim());
+      alert(`Welcome, Agent ${codename.trim()}!`);
+    } else {
+      setError('Codename is required to continue.');
     }
   };
 
@@ -18,10 +21,14 @@ const CodenameForm = () => {
         id="codename"
         type="text"
         value={codename}
-        onChange={(e) => setCodename(e.target.value)}
+        onChange={(e) => {
+          setCodename(e.target.value)
+          setError("")
+        }}
         placeholder="e.g., NightOwl"
         required
       />
+      {error && <p className="form-error">{error}</p>}
       <button type="submit">Login</button>
     </form>
   );

@@ -21,7 +21,7 @@ const Header = () => {
   
     setWarningMessage("");
     navigate("/forums");
-};
+  };
 
    return (
     <header className="site-header">
@@ -38,22 +38,19 @@ const Header = () => {
       {warningMessage && (
         <div className="forum-warning">
           <p className="warning-text">{warningMessage}</p>
-          <p style={{ marginTop: "0.5rem" }}>
+          <p className="forum-options">
             Already have your codename?{" "}
-            <button
-              style={{
-                background: "none",
-                border: "none",
-                color: "#ff4444",
-                textDecoration: "underline",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                setShowLoginModal(true);
-                setWarningMessage(""); // Hide the warning when login opens
-              }}
-            >
+            <button className="link-button" onClick={() => {
+              setShowLoginModal(true);
+              setWarningMessage("");
+            }}>
               Click here to login
+            </button>
+          </p>
+          <p className="forum-options">
+            Or{" "}
+            <button className="link-button" onClick={() => setWarningMessage("")}>
+              Close this message
             </button>
           </p>
         </div>
@@ -64,14 +61,13 @@ const Header = () => {
         <div className="modal-content">
           {showCreateModal && <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />}
           {showLoginModal && <LoginForm handleModalClose={() => setShowLoginModal(false)} />}
-            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <div className="modal-footer">
             <button
               className="close-modal"
               onClick={() => {
                 setShowCreateModal(false);
                 setShowLoginModal(false);
-              }}
-            >
+              }}>
               Close
             </button>
           </div>
