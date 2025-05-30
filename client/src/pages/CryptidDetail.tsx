@@ -4,7 +4,7 @@ import { useState } from 'react';
 import '../styles/spooky.css';
 
 const cryptidToHauntedMap: Record<string, string> = {
-  'mothman': 'trans-allegheny',
+  'mothman': 'trans-allegheny-asylum',
   'sasquatch': 'rucker-mansion',
   'skinwalker': 'ufo-valley',
   'headless-men': 'leatherock-hotel',

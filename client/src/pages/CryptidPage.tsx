@@ -65,6 +65,8 @@ export const cryptids = [
       '/icons/headless-icon.jpg',
       '/icons/headless-ancient.jpg',
       '/icons/headless-men.jpg',
+      '/icons/headless.jpg',
+      '/icons/headless-couple.jpg'
     ],
     videos: [
       'https://www.youtube.com/shorts/qAWO_8WFFLI',
