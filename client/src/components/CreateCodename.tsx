@@ -7,9 +7,15 @@ import type { User } from '../models/User';
 
 
 const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
-  const [userFormData, setUserFormData] = useState<User>({ codename: "", email: "", password: "" });
+  const [userFormData, setUserFormData] = useState<User>({
+    codename: "",
+    email: "",
+    password: ""
+  });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [addUser] = useMutation(ADD_USER)
 
@@ -21,10 +27,13 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!userFormData.codename || !userFormData.email || !userFormData.password || confirmPassword !== userFormData.password) {
+    if (
+      !userFormData.codename || !userFormData.email || !userFormData.password || confirmPassword !== userFormData.password
+    ) {
+      setAlertMessage("All fields must be filled correctly.")
       setShowAlert(true);
       return;
-      }
+    }
 
     try {
       const { data } = await addUser({
@@ -38,9 +47,19 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
       });
 
       Auth.login(data.addUser.token);
-      handleModalClose();
-    } catch (err) {
+      setSuccessMessage("Success, you have Joined Us!");
+      setTimeout(() => {
+        handleModalClose();
+      }, 1500);
+    } catch (err:unknown) {
       console.error(err);
+      let errorMessage = "Something went wrong. Please try again.";
+
+      if (err instanceof Error && err.message.includes("E11000")) {
+        errorMessage = "This email address is already registered.";
+      }
+      
+      setAlertMessage(errorMessage);
       setShowAlert(true);
     }
   };
@@ -50,9 +69,15 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
       <Form noValidate onSubmit={handleFormSubmit}>
         {showAlert && (
           <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant="danger">
-            Something went wrong with your signup!
+            {alertMessage}
           </Alert>
         )}
+        {successMessage && (
+          <Alert variant="success">
+            {successMessage}
+          </Alert>
+        )}
+
         <Form.Group className="mb-3">
           <Form.Control
             type="text"
@@ -100,10 +125,11 @@ const JoinUsForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         <Button type="submit" variant="success" className="w-100">
           Submit
         </Button>
+
+        <Button className="w-100 mt-3" variant="danger" onClick={handleModalClose}>
+          Cancel
+        </Button>
       </Form>
-      <Button className="w-100 mt-3" variant="danger" onClick={handleModalClose}>
-        Close
-      </Button>
     </>
   );
 };
