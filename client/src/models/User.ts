@@ -1,3 +1,4 @@
+
 export interface User {
   codename: string | null;
   email: string | null;
