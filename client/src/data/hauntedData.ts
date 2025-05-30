@@ -50,8 +50,8 @@ export const hauntedData = [
     location: 'Colfax County, New Mexico',
     description:
       'Believed to be a spiritual gateway, this mesa and its nearby inn are known for ghost sightings and spiritual attacks. Visitors report strange lights and eerie voices near the cliffs.',
-    images: ['CasaDelGavilan.webp', 'UrracaMesaNight.webp', 'InnInterior.webp'],
-    externalLink: 'https://www.philmontscoutranch.org/TrekPlanning/Maps/Urraca.aspx',
+    images: ['CasadelGavilan.avif', 'CasaGavilanFront.avif', 'CasaGavilanSign.jpg'],
+    externalLink: 'https://casadelgavilan.com/',
   },
   {
     id: 'ufo-valley',
@@ -69,7 +69,7 @@ export const hauntedData = [
     description:
       'This historic inn is haunted by ghostly animals, disembodied voices, and a mysterious woman in white. Guests report doors opening on their own and shadowy figures in the halls.',
     images: ['Leatherlockbrick.jpg', 'leatherlocktan.png', 'Leatherock-Hotel-and-Museum-Cherryvale.jpg'],
-    externalLink: 'https://www.hauntedplaces.org/item/leatherock-hotel/',
+    externalLink: 'https://www.kansashauntedhouses.com/real-haunt/leatherock-hotel-museum.html',
   },
   {
     id: 'dream-beach',
@@ -77,8 +77,8 @@ export const hauntedData = [
     location: 'Itanhaém, São Paulo, Brazil',
     description:
       'A beautiful yet eerie shoreline, Dream Beach is known for reports of ghostly couples who vanished in the tides. Apparitions and disembodied voices have been heard by visitors and staff.',
-    images: ['DreamBeachSunset.webp', 'GhostCouple.webp', 'ItanhaemWaves.webp'],
-    externalLink: 'https://www.itah.org.br/tourism/dream-beach-haunted-legends',
+    images: ['DreamBeach.jpg', 'DreamBeachGhost.png', 'DreamBeachBoat.webp'],
+    externalLink: 'https://traveltriangle.com/blog/haunted-places-in-brazil/',
   },
   {
     id: 'glamis-castle',

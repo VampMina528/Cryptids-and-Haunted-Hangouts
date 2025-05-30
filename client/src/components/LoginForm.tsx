@@ -32,10 +32,8 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
     try {
       const { data } = await loginUser({
         variables: {
-          input: {
-            codename: userFormData.codename,
-            password: userFormData.password
-          }
+          codename: userFormData.codename,
+          password: userFormData.password
         }
       });
 
