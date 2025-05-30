@@ -3,6 +3,7 @@ import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useMutation } from '@apollo/client'
+import { useNavigate } from 'react-router-dom';
 import { LOGIN_USER } from '../graphql/mutations.js';
 import Auth from '../context/AuthContext.js';
 
@@ -13,8 +14,8 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
   });
 
   const [showAlert, setShowAlert] = useState(false);
-
   const [loginUser] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -39,6 +40,7 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
 
       Auth.login(data.loginUser.token);
       handleModalClose();
+      navigate("/forums");
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -81,12 +83,12 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
           />
         </Form.Group>
 
-        <Button
-          type="submit"
-          variant="success"
-          className="w-100"
-        >
+        <Button type="submit" variant="success" className="w-100">
           Login
+        </Button>
+
+        <Button variant="danger" className="w-100 mt-3" onClick={handleModalClose}>
+          Cancel
         </Button>
       </Form>
     </>

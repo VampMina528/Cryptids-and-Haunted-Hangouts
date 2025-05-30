@@ -61,18 +61,8 @@ const Header = () => {
         <div className="modal-content">
           {showCreateModal && <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />}
           {showLoginModal && <LoginForm handleModalClose={() => setShowLoginModal(false)} />}
-            <div className="modal-footer">
-            <button
-              className="close-modal"
-              onClick={() => {
-                setShowCreateModal(false);
-                setShowLoginModal(false);
-              }}>
-              Close
-            </button>
           </div>
         </div>
-      </div>
     )}
     </header>
   );
