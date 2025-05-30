@@ -9,7 +9,8 @@ import Auth from '../context/AuthContext.js';
 import type { User } from '../models/User.js';
 
 const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
-  const [userFormData, setUserFormData] = useState<User>({ codename: "", email: "", password: "" });
+  //const [userFormData, setUserFormData] = useState<User>({ codename: "", email: "", password: "" });
+  const [userFormData, setUserFormData] = useState({ codename: "", password: ""})
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
@@ -33,10 +34,11 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
     try {
       const { data } = await loginUser({
         variables: {
-          input: {
-          email: userFormData.codename,
+          //input: {
+          //email: userFormData.codename,
+          codename: userFormData.codename,
           password: userFormData.password
-          }
+          // }
         }
       });
 
@@ -49,7 +51,7 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
 
     setUserFormData({
       codename: "",
-      email: "",
+      //email: "",
       password: "",
     });
   };

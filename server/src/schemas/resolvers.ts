@@ -30,7 +30,7 @@ const resolvers = {
         addUser: async (_parent: unknown, { input }: {input: { codename: string; email: string; password: string } }) => {
             const { codename, email, password } = input  
             const user = await User.create({ codename, email, password });
-            const token = signToken(user.codename, user.email, user._id);
+            const token = signToken(user);
             return { token, user };
           },
       
@@ -38,7 +38,7 @@ const resolvers = {
             const user = await User.findOne({ codename });
       
             if (!user) {
-              throw new AuthenticationError('Invalid email');
+              throw new AuthenticationError('Invalid codename');
             }
       
             const isPwCorrect = await user.isCorrectPassword(password); 
@@ -46,7 +46,7 @@ const resolvers = {
               throw new AuthenticationError('Invalid password');
             }
       
-            const token = signToken(user.codename, user.email, user._id);
+            const token = signToken(user);
             return { token, user };
           },
 
