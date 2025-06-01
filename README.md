@@ -15,7 +15,7 @@
 
 * Mina Draper-Hammond
 * Fischer Almanza
-* Danny Wortman
+* Danny Wortmann
 
 ## 🚀 Key Features
 
