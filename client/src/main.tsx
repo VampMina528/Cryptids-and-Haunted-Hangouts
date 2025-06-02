@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context"
-import "./index.css";
+import "./styles/index.css";
 import App from "./App";
 import Auth from "./context/AuthContext";
 

@@ -9,7 +9,6 @@ import Header from './components/Header';
 import MusicPlayer from './components/MusicPlayer';
 import './styles/spooky.css';
 
-
 export const CryptidContext = createContext<{
   selectCryptid: (id: string) => void;
 } | null>(null);
@@ -17,7 +16,6 @@ export const CryptidContext = createContext<{
 function AppRoutes() {
   const location = useLocation();
   const hideHeader = location.pathname.startsWith("/cryptids") || location.pathname.startsWith("/haunted");
-
 
   return (
     <>
@@ -27,26 +25,29 @@ function AppRoutes() {
         <Route path="/" element={<CryptidPage />} />
         <Route path="/cryptids/:id" element={<CryptidDetail />} />
         <Route path="/haunted/:id" element={<HauntedPage />} />
-        <Route path="/forums" element={
-          <ProtectedRoute>
-            <ForumsPage />
-          </ProtectedRoute>
-        } />
+        <Route
+          path="/forums"
+          element={
+            <ProtectedRoute>
+              <ForumsPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
 }
 
 function App() {
-  const [selectedId, setSelectedId] = useState<string | null>(null); //do we still need this?
+  const [_, setSelectedId] = useState<string | null>(null); // unused value intentionally ignored
 
   return (
     <CryptidContext.Provider value={{ selectCryptid: setSelectedId }}>
       <Router>
         <AppRoutes />
       </Router>
-    // </CryptidContext.Provider>
-  )
+    </CryptidContext.Provider>
+  );
 }
 
 export default App;

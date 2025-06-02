@@ -14,7 +14,7 @@ export const hauntedData = [
     location: 'Baguio, Philippines',
     description:
       'Once a Dominican retreat house and later a wartime hospital, the Diplomat Hotel is now known for headless apparitions and eerie sounds, especially in its courtyard and former chapel.',
-    images: ['CourtyardDiplomat.jpg', 'Trans-AlleghenyHallway.png', 'Womens_Corridor_Insane_Asylum.jpg'],
+    images: ['DiplomatCourtyard.jpg', 'Diplomat-Hotel-Old.jpg', 'diplomat-hotel-lobby.jpg', 'Diplomat_Hotel.jpg'],
     externalLink: 'https://www.atlasobscura.com/places/haunted-diplomat-hotel',
   },
   {
@@ -23,7 +23,7 @@ export const hauntedData = [
     location: 'Jenny Jump State Forest, New Jersey',
     description:
       'Said to lie over an ancient Native American burial ground, Ghost Lake is known for foggy apparitions and eerie reflections. Some claim to see figures walking on the water during dusk.',
-    images: ['jenny-jump-ghost-lake.jpg', 'GhostLake.webp', 'Pinelands.jpg'],
+    images: ['ghost-lake-jenny-jump.jpg', 'GhostLake.webp', 'Ghost-Pines.jpg'],
     externalLink: 'https://www.njhiking.com/jenny-jump-ghost-lake/',
   },
   {
@@ -32,7 +32,7 @@ export const hauntedData = [
     location: 'Milwaukee, Wisconsin',
     description:
       'This historic Victorian home is now a bed & breakfast known for its paranormal activity. Guests report nightmares, objects moving, and sightings of ghostly figures in vintage clothing.',
-    images: ['brumder-exterior-aged.jpg', 'BrumderRoom.jpg', 'GeorgeBrumderRoom.jpg'],
+    images: ['brumder-exterior-aged.jpg', 'BrumderRoom.jpg', 'BrumderRoomGeorge.jpg'],
     externalLink: 'https://paranormalmilwaukee.com/locations/brumder-mansion-milwaukee-haunted-hotel/',
   },
   {
@@ -95,7 +95,7 @@ export const hauntedData = [
     location: 'Weston, West Virginia',
     description:
       'Once a sanctuary for the mentally ill, this massive stone asylum is now considered one of the most haunted places in the U.S. Paranormal investigators report eerie sounds, full-body apparitions, and sudden temperature drops.',
-    images: ['Trans-Allegheny.avif', 'Trans-AlleghenyHallway.png', 'Womens_Corridor_Insane_Asylum.jpg', 'flashlight-tour-at-trans-allegheny.webp'],
+    images: ['Trans-Allegheny.avif', 'Trans-AlleghenyHallway.png', 'Trans-Allegheny-Womens-Corridor.jpg', 'trans-allegheny-flashlight-tour.webp'],
     externalLink: 'https://trans-alleghenylunaticasylum.com/',
   },
 ];

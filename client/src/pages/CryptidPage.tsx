@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import GlobeView from '../components/GlobeView';
 import '../styles/spooky.css';
 
@@ -44,7 +46,7 @@ export const cryptids = [
       'At Skinwalker Ranch, the land seethes with ancient malice. Cattle are found dismembered. Lights dance in the dark. The Skinwalker — a cursed Navajo witch — can wear the shape of beast or man, and speaks in voices that don’t belong.',
     icon: '/icons/skinwalker.jpg',
     images: [
-      '/icons/skinwalker.jpg',
+      '/icons/skinwalker-horned.jpg',
       '/icons/skinwalker-corpsey.jpg',
       '/icons/skinwalker-riding.jpg',
     ],
@@ -81,8 +83,8 @@ export const cryptids = [
     icon: '/icons/chupacabra-icon.jpg',
     images: [
       '/icons/chupacabra-icon.jpg',
-      '/icons/elchupacabra.jpg',
-      '/icons/blurry-chupacabra.jpg',
+      '/icons/chupacabra.jpg',
+      '/icons/chupacabra-blurry.jpg',
     ],
     videos: [
       'https://www.youtube.com/watch?v=V25GZ3hUS3g',
@@ -97,9 +99,9 @@ export const cryptids = [
       'Deep in the rainforest walks Curupira — backwards feet twisting tracks in tangled roots. He defends the forest with illusion and madness, punishing intruders with endless wandering.',
     icon: '/icons/curupira-icon.jpeg',
     images: [
-      '/icons/curupira-icon.jpeg',
-      '/icons/ian-matias-curupira.jpg',
-      '/icons/art-curupira.jpg',
+      '/icons/curupira-icon.jpg',
+      '/icons/curupira-ian-matias.jpg',
+      '/icons/curupira-art.jpg',
     ],
     videos: [
       'https://www.youtube.com/watch?v=0Xl7oRy9bEo',
@@ -108,15 +110,15 @@ export const cryptids = [
   },
   {
     id: 'loch-ness-monster',
-    name: 'Loch Ness Monster',
-    location: 'Loch Ness, Scotland',
+    name: 'Loch-Ness Monster "Nessie"',
+    location: 'Lake Loch Ness, in the Scottish Highlands',
     description:
       'Below the black waters of Loch Ness, something vast stirs. Nessie — long-necked and ancient — emerges in ripples and mist. Eyewitnesses whisper, sonar pings vanish, and the legend never sleeps.',
     icon: '/icons/nessie-icon.jpg',
     images: [
-      '/icons/nessie-icon.jpg',
-      '/icons/nessie.jpg',
       '/icons/loch-ness-monster.jpg',
+      '/icons/loch-ness-nessie.jpg',
+      '/icons/loch-ness-icon.jpg',
     ],
     videos: [
       'https://www.youtube.com/watch?v=HHhdfXUNk0I',
@@ -184,7 +186,7 @@ export const cryptids = [
     images: [
       '/icons/dark-watchers-icon.jpg',
       '/icons/darkwatcher.png',
-      '/icons/hooded-dark-watcher.jpg',
+      '/icons/dark-watcher.jpg',
     ],
     videos: [
       'https://www.youtube.com/watch?v=xmlWSMorow8',
@@ -193,10 +195,33 @@ export const cryptids = [
   },
 ];
 
+
 const CryptidPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="homepage-container">
-      <GlobeView />
+      <div className="map-section">
+        <GlobeView />
+      </div>
+      <div className="search-buttons">
+        <button
+          className="search-btn"
+          onClick={() => navigate('/wikipedia?type=cryptid')}
+        >
+          Search for Cryptids
+        </button>
+        <button
+          className="search-btn"
+          onClick={() => navigate('/wikipedia?type=haunted')}
+        >
+          Search for Haunted Hangouts
+        </button>
+      </div>
     </div>
   );
 };
