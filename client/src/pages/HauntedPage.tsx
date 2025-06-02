@@ -29,7 +29,7 @@ const HauntedPage = () => {
   };
 
   return (
-    <div className="cryptid-detail-container full-page">
+    <div className="detail-container full-page">
       <h1 className="flicker">{haunted.name}</h1>
       <h3>{haunted.location}</h3>
 
