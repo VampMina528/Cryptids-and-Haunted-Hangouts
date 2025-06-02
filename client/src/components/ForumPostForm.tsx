@@ -24,18 +24,13 @@ const ForumPostForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!codename) {
-            alert("Please enter your codename before posting.");
-            return;
-        }
-
         if (containsProfanity(content)) {
             alert("Please avoid using these words...it might upset the cryptids...");
             return;
         }
 
         if (content.trim()) {
-            await addPost({ variables: { codename, content: content.trim() } });
+            await addPost({ variables: { input: { content: content.trim() } } });
             setContent("");
             setShowForm(false);
         }
@@ -60,7 +55,7 @@ const ForumPostForm = () => {
                         required
                     />
                     <div className="forum-buttons">
-                        <button type="submit">Post</button>
+                        <button type="submit" disabled={!content.trim()}>Post</button>
                         <button
                             type="button"
                             onClick={() => {
