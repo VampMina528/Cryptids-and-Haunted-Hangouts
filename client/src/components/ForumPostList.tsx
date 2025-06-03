@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ALL_FORUM_POSTS } from '../graphql/queries';
 import { DELETE_FORUM_POST, UPDATE_FORUM_POST } from '../graphql/mutations';
@@ -54,7 +54,12 @@ const ForumPostList = () => {
     const [editingPostId, setEditingPostId] = useState<string | null>(null)
     const [editedContent, setEditedContent] = useState("")
 
-    const codename = localStorage.getItem("cryptidCodename");
+    const [codename, setCodename] = useState<string | null>(null);
+    useEffect(() => {
+        const storedCodename = localStorage.getItem("cryptidCodename");
+        console.log("loaded codenam from localStorage:", storedCodename)
+        setCodename(storedCodename);
+    }, []);
     
     if (loading) return <p>Loading spooky chatter... </p>;
     if (error) return <p>Error loading forum posts</p>;

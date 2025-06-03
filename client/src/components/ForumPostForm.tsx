@@ -69,7 +69,7 @@ const ForumPostForm = () => {
                     </div>
                 </form>
             ) : (
-                <button onClick={()=> setShowForm(true)}>Write a new post</button>
+                <button className="write-post-button" onClick={()=> setShowForm(true)}>Write a new post</button>
             )}
         </>
     );
