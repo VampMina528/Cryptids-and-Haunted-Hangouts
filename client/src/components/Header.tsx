@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import JoinUsForm from './CreateCodename';
 import LoginForm from './LoginForm';
+import Auth from '../context/AuthContext';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -9,6 +10,12 @@ const Header = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
+  const [codename, setCodename] = useState<string | null>(null);
+
+  useEffect(() => {
+    const current = Auth.getCodename();
+    setCodename(current);
+  }, []);
 
   const handleForumClick = () => {
     const token = localStorage.getItem("id_token");
@@ -17,10 +24,14 @@ const Header = () => {
     if (!token || !codename) {
       setWarningMessage('🕯️ You must Join Us before entering the forum.');
       return;
-  }
+    }
   
     setWarningMessage("");
     navigate("/forums");
+  };
+
+  const handleLogout = () => {
+    Auth.logout();
   };
 
    return (
@@ -31,8 +42,17 @@ const Header = () => {
       </p>
 
       <div className="header-buttons">
-        <button onClick={() => setShowCreateModal(true)}>Join Us</button>
-        <button onClick={handleForumClick}>Forum</button>
+        {codename ? (
+          <>
+            <span className="codename-display">Welcome, {codename}</span>
+            <button onClick={handleLogout} className="logout-button">Logout</button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => setShowCreateModal(true)}>Join Us</button>
+            <button onClick={handleForumClick}>Forum</button>
+          </>
+        )}
       </div>
 
       {warningMessage && (
@@ -63,7 +83,7 @@ const Header = () => {
           {showLoginModal && <LoginForm handleModalClose={() => setShowLoginModal(false)} />}
           </div>
         </div>
-    )}
+      )}
     </header>
   );
 };
