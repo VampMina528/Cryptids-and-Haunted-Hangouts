@@ -18,21 +18,19 @@ export const authenticateToken = ({ req }: any) => {
 
   // If no token is provided, return the request object as is
   if (!token) {
-    return req;
+    return { user: null };
   }
 
   // Try to verify the token
   try {
     const { data }: any = jwt.verify(token, process.env.JWT_SECRET_KEY || '', { maxAge: '2hr' });
     // If the token is valid, attach the user data to the request object
-    req.user = data;
+    return { user: data }
   } catch (err) {
     // If the token is invalid, log an error message
     console.log('Invalid token');
+    return { user: null }
   }
-
-  // Return the request object
-  return req;
 };
 
 export const signToken = (user: {codename: string, email: string, _id: unknown }) => {

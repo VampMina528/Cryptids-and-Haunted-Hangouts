@@ -24,6 +24,11 @@ const ForumPostForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // if (!codename) {
+        //     alert("🕯️ In order to post you must JOIN US. 🕯️");
+        //     return
+        // }
+
         if (containsProfanity(content)) {
             alert("Please avoid using these words...it might upset the cryptids...");
             return;
@@ -33,14 +38,6 @@ const ForumPostForm = () => {
             await addPost({ variables: { input: { content: content.trim() } } });
             setContent("");
             setShowForm(false);
-        }
-
-        if (!codename) {
-            return (
-                <div className="forum-warning">
-                    <p className="warning-text">🕯️ In order to post you must <strong>JOIN US</strong>. 🕯️</p>
-                </div>
-            );
         }
     };
 
