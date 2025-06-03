@@ -10,9 +10,9 @@ export const cryptids = [
     location: 'Point Pleasant, West Virginia',
     description:
       'In the shadows of Point Pleasant lurks a winged enigma. The Mothman — eyes glowing crimson — glides through the night air, foretelling doom. Its legend began during a flurry of sightings in 1966, culminating in the Silver Bridge collapse. Some say it still watches, waiting...',
-    icon: '/icons/mothman-icon.jpg',
+    icon: '/icons/Mothman-icon.jpg',
     images: [
-      '/icons/mothman-icon.jpg',
+      '/icons/Mothman-icon.jpg',
       '/icons/mothman-main.jpg',
       '/icons/mothman-bridge.jpg',
     ],
@@ -165,9 +165,9 @@ export const cryptids = [
     location: 'Elkhorn, Wisconsin',
     description:
       'Something massive lurks near Bray Road — a snarling, upright wolf with human eyes. Sightings date to 1936. Locals warn: if you see it once, don’t look back.',
-    icon: '/icons/bray-road-beast-icon.jpg',
+    icon: '/icons/Bray-Road-Beast-icon.jpg',
     images: [
-      '/icons/bray-road-beast-icon.jpg',
+      '/icons/Bray-Road-Beast-icon.jpg',
       '/icons/beastofbrayroad.jpg',
       '/icons/beast-of-bray-road-mystery.jpg',
     ],
