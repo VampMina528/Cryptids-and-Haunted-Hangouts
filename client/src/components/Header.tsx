@@ -1,21 +1,20 @@
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import JoinUsForm from './CreateCodename';
 import LoginForm from './LoginForm';
 import Auth from '../context/AuthContext';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [warningMessage, setWarningMessage] = useState("");
-  const [codename, setCodename] = useState<string | null>(null);
 
-  useEffect(() => {
-    const current = Auth.getCodename();
-    setCodename(current);
-  }, []);
+  const isLoggedIn = Auth.loggedIn();
+  const codename = localStorage.getItem("cryptidCodename");
+  const isForumPage = location.pathname === "/forums";
 
   const handleForumClick = () => {
     const token = localStorage.getItem("id_token");
@@ -42,15 +41,39 @@ const Header = () => {
       </p>
 
       <div className="header-buttons">
-        {codename ? (
-          <>
-            <span className="codename-display">Welcome, {codename}</span>
-            <button onClick={handleLogout} className="logout-button">Logout</button>
-          </>
-        ) : (
+        {/* Not logged in: show modals */}
+        {!isLoggedIn && (
           <>
             <button onClick={() => setShowCreateModal(true)}>Join Us</button>
             <button onClick={handleForumClick}>Forum</button>
+          </>
+        )}
+
+        {/* Logged in: show codename + nav buttons */}
+        {isLoggedIn && (
+          <>
+            {codename && (
+              <span className="codename-display">Welcome, {codename}</span>
+            )}
+            {isForumPage ? (
+              <>
+                <button onClick ={() => navigate("/")} className="header-nav-button">
+                  ⬅ Back to Homepage
+                </button>
+                <button onClick={handleLogout} className="logout-button">
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => navigate("/forums")} className="header-nav-button">
+                  Return to Forum
+                </button>
+                <button onClick={handleLogout} className="logout-button">
+                  Logout
+                </button>
+              </>
+            )}
           </>
         )}
       </div>
@@ -60,16 +83,22 @@ const Header = () => {
           <p className="warning-text">{warningMessage}</p>
           <p className="forum-options">
             Already have your codename?{" "}
-            <button className="link-button" onClick={() => {
-              setShowLoginModal(true);
-              setWarningMessage("");
-            }}>
+            <button
+              className="link-button"
+              onClick={() => {
+                setShowLoginModal(true);
+                setWarningMessage("");
+              }}
+            >
               Click here to login
             </button>
           </p>
           <p className="forum-options">
             Or{" "}
-            <button className="link-button" onClick={() => setWarningMessage("")}>
+            <button
+              className="link-button"
+              onClick={() => setWarningMessage("")}
+            >
               Close this message
             </button>
           </p>
@@ -78,9 +107,13 @@ const Header = () => {
 
       {(showCreateModal || showLoginModal) && (
         <div className="modal-overlay">
-        <div className="modal-content">
-          {showCreateModal && <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />}
-          {showLoginModal && <LoginForm handleModalClose={() => setShowLoginModal(false)} />}
+          <div className="modal-content">
+            {showCreateModal && (
+              <JoinUsForm handleModalClose={() => setShowCreateModal(false)} />
+            )}
+            {showLoginModal && (
+              <LoginForm handleModalClose={() => setShowLoginModal(false)} />
+            )}
           </div>
         </div>
       )}
