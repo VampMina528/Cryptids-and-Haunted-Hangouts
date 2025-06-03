@@ -44,7 +44,7 @@ export const cryptids = [
     location: 'Uintah Basin, Utah',
     description:
       'At Skinwalker Ranch, the land seethes with ancient malice. Cattle are found dismembered. Lights dance in the dark. The Skinwalker — a cursed Navajo witch — can wear the shape of beast or man, and speaks in voices that don’t belong.',
-    icon: '/icons/skinwalker.jpg',
+    icon: '/icons/skinwalker-riding.jpg',
     images: [
       '/icons/skinwalker-horned.jpg',
       '/icons/skinwalker-corpsey.jpg',
@@ -97,7 +97,7 @@ export const cryptids = [
     location: 'São Paulo, Brazil',
     description:
       'Deep in the rainforest walks Curupira — backwards feet twisting tracks in tangled roots. He defends the forest with illusion and madness, punishing intruders with endless wandering.',
-    icon: '/icons/curupira-icon.jpeg',
+    icon: '/icons/curupira-icon.jpg',
     images: [
       '/icons/curupira-icon.jpg',
       '/icons/curupira-ian-matias.jpg',
@@ -114,7 +114,7 @@ export const cryptids = [
     location: 'Lake Loch Ness, in the Scottish Highlands',
     description:
       'Below the black waters of Loch Ness, something vast stirs. Nessie — long-necked and ancient — emerges in ripples and mist. Eyewitnesses whisper, sonar pings vanish, and the legend never sleeps.',
-    icon: '/icons/nessie-icon.jpg',
+    icon: '/icons/loch-ness-icon.jpg',
     images: [
       '/icons/loch-ness-monster.jpg',
       '/icons/loch-ness-nessie.jpg',
