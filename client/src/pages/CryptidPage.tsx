@@ -111,7 +111,7 @@ export const cryptids = [
   {
     id: 'loch-ness-monster',
     name: 'Loch-Ness Monster "Nessie"',
-    location: 'Lake Loch Ness, in the Scottish Highlands',
+    location: 'Lake Loch Ness, Scotland',
     description:
       'Below the black waters of Loch Ness, something vast stirs. Nessie — long-necked and ancient — emerges in ripples and mist. Eyewitnesses whisper, sonar pings vanish, and the legend never sleeps.',
     icon: '/icons/loch-ness-icon.jpg',
