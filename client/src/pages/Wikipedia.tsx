@@ -10,7 +10,7 @@ const Wikipedia = () => {
   const location = useLocation();
 
   const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get('type'); // 'cryptid' or 'haunted'
+  const type = queryParams.get('type'); 
 
   const placeholder =
     type === 'cryptid'
@@ -37,7 +37,7 @@ const Wikipedia = () => {
         `https://en.wikipedia.org/w/api.php?action=opensearch&format=json&origin=*&search=${term}`
       );
       const data = await res.json();
-      setResults([data[1], data[3]]); // [titles[], urls[]]
+      setResults([data[1], data[3]]); 
     } catch (err) {
       console.error('Error fetching Wikipedia data:', err);
     }
@@ -46,7 +46,7 @@ const Wikipedia = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       handleSearch(query);
-    }, 300); // debounce
+    }, 300); 
 
     return () => clearTimeout(handler);
   }, [query]);

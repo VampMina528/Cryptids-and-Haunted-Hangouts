@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { createContext, useState } from 'react';
+import Wikipedia from './pages/Wikipedia';
 import ProtectedRoute from './components/ProtectedRoute';
 import CryptidPage from './pages/CryptidPage';
 import CryptidDetail from './pages/CryptidDetail';
@@ -25,6 +26,7 @@ function AppRoutes() {
         <Route path="/" element={<CryptidPage />} />
         <Route path="/cryptids/:id" element={<CryptidDetail />} />
         <Route path="/haunted/:id" element={<HauntedPage />} />
+        <Route path="/wikipedia" element={<Wikipedia />} />
         <Route
           path="/forums"
           element={

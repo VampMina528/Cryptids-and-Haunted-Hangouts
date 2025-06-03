@@ -67,7 +67,7 @@ export const cryptids = [
       '/icons/headless-ancient.jpg',
       '/icons/headless-men.jpg',
       '/icons/headless.jpg',
-      '/icons/headless-couple.jpg'
+      '/icons/headless-couple.jpg',
     ],
     videos: [
       'https://www.youtube.com/shorts/qAWO_8WFFLI',
@@ -195,7 +195,6 @@ export const cryptids = [
   },
 ];
 
-
 const CryptidPage = () => {
   const navigate = useNavigate();
 
@@ -210,13 +209,13 @@ const CryptidPage = () => {
       </div>
       <div className="search-buttons">
         <button
-          className="search-btn"
+          className="lantern-glow-button"
           onClick={() => navigate('/wikipedia?type=cryptid')}
         >
           Search for Cryptids
         </button>
         <button
-          className="search-btn"
+          className="lantern-glow-button"
           onClick={() => navigate('/wikipedia?type=haunted')}
         >
           Search for Haunted Hangouts
