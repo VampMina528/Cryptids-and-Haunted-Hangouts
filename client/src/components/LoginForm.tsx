@@ -38,6 +38,12 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         }
       });
 
+      // const token = data.login.token;
+      // const codename = data.login.user.codename;
+
+      // localStorage.setItem("id_token", token);
+      // localStorage.setItem("cryptidCodename", codename);
+      // console.log("setting codename in localstorage", codename)
       Auth.login(data.loginUser.token);
       handleModalClose();
       navigate("/forums");

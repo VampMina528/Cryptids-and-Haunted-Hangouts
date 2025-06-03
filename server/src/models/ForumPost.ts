@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const forumPostSchema = new Schema({
     codename: {
@@ -9,11 +9,13 @@ const forumPostSchema = new Schema({
         type: String,
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
-});
+    }, 
+    {timestamps: true}
+);
 
 const ForumPost = model("ForumPost", forumPostSchema);
 

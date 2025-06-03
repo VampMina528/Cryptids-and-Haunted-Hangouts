@@ -43,6 +43,9 @@ button:focus-visible {
   border-radius: 0.5rem;
 }
 
+.write-post-button {
+  margin-top: 2rem;
+}
 
 .forum-buttons {
   display: flex;
@@ -98,7 +101,10 @@ textarea, .forum-buttons {
   margin: 0.5rem 0 1rem 0;
   white-space: pre-wrap;
   line-height: 1.5;
+  color: red;
 }
+
+
 
 .forum-post textarea {
   width: 100%;

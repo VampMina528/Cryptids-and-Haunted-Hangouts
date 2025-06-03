@@ -83,6 +83,13 @@ const resolvers = {
             await ForumPost.findByIdAndDelete(id);
             return true;
         }
+    },
+    ForumPost: {
+        createdAt: (parent: any) => {
+            return parent.createdAt instanceof Date
+            ? parent.createdAt.toISOString()
+            : new Date(parent.createdAt).toISOString();
+        }
     }
 };
 
