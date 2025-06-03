@@ -385,10 +385,13 @@ canvas {
 
 /* Codename display at the top */
 .codename-display {
-  color: #aaa;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  color: #ffcccc;
   font-size: 1rem;
-  margin-right: 1rem;
+  text-shadow: 1px 1px 3px black;
+  z-index: 10000;
 }
 
 /* Button row at top of forum */

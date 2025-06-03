@@ -3,7 +3,11 @@
 import { jwtDecode } from 'jwt-decode';
 
 interface UserToken {
-  name: string;
+  data: {
+  codename: string;
+  email: string;
+  _id: string;
+  };
   exp: number;
 }
 
@@ -58,7 +62,7 @@ class AuthService {
 
     try {
       const decoded = jwtDecode<UserToken>(token);
-      return decoded.name || null;
+      return decoded.data.codename || null;
     } catch (err) {
       return null;
     }
