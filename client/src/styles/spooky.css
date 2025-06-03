@@ -374,3 +374,69 @@ canvas {
   margin-top: 1rem;
   text-align: center;
 }
+
+/* Forum wrapper styling */
+.forums-wrapper {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Codename display at the top */
+.codename-display {
+  color: #aaa;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+/* Button row at top of forum */
+.forum-nav-buttons {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+/* Forum header buttons and warning */
+.forum-warning {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #220000;
+  border: 1px solid #550000;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.warning-text {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.forum-options .link-button {
+  background: none;
+  color: #cc4444;
+  text-decoration: underline;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.forum-options .link-button:hover {
+  color: #ff6666;
+}
+
+/* Logout button for both forum and header */
+.logout-button {
+  background-color: #550000;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #770000;
+}
