@@ -14,44 +14,46 @@ const GlobeView = () => {
     if (!globeRef.current) return;
 
     const instance = new createGlobe(globeRef.current)
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
-      .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
-      .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
-      .htmlElementsData(
-        cryptids.map((c) => ({
-          ...c,
-          lat: getLatitude(c.name),
-          lng: getLongitude(c.name),
-        }))
-      )
-      .htmlElement((d: any) => {
-        const cryptid = d as typeof cryptids[number];
-        const el = document.createElement('div');
-        el.innerHTML = `
-          <div style="text-align: center;">
-            <img 
-              src="${cryptid.icon}" 
-              alt="${cryptid.name}" 
-              title="${cryptid.name}" 
-              width="28" 
-              height="28" 
-              class="globe-icon" 
-            />
-            <div class="globe-label">${cryptid.name}</div>
-          </div>
-        `;
-        el.style.cursor = 'pointer';
-        el.style.zIndex = '10';
-        el.style.pointerEvents = 'auto';
-        el.style.position = 'absolute';
+  .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+  .backgroundImageUrl('//unpkg.com/three-globe/example/img/night-sky.png')
+  .pointOfView({ lat: 20, lng: 0, altitude: 2 }, 0)
+  .htmlElementsData(
+    cryptids.map((c) => ({
+      ...c,
+      lat: getLatitude(c.name),
+      lng: getLongitude(c.name),
+      altitude: 0.01 // Fixes disappearing icon issue by raising icon slightly above surface
+    }))
+  )
+  .htmlElement((d: any) => {
+    const cryptid = d as typeof cryptids[number];
+    const el = document.createElement('div');
+    el.innerHTML = `
+      <div style="text-align: center;">
+        <img 
+          src="${cryptid.icon}" 
+          alt="${cryptid.name}" 
+          title="${cryptid.name}" 
+          width="28" 
+          height="28" 
+          class="globe-icon" 
+        />
+        <div class="globe-label">${cryptid.name}</div>
+      </div>
+    `;
+    el.style.cursor = 'pointer';
+    el.style.zIndex = '10';
+    el.style.pointerEvents = 'auto';
+    el.style.position = 'absolute';
 
-        el.onclick = () => {
-          if (context) context.selectCryptid(cryptid.id);
-          navigate(`/cryptids/${cryptid.id}`);
-        };
+    el.onclick = () => {
+      if (context) context.selectCryptid(cryptid.id);
+      navigate(`/cryptids/${cryptid.id}`);
+    };
 
-        return el;
-      });
+    return el;
+  });
+
 
     globeInstance.current = instance;
 
@@ -82,35 +84,41 @@ const GlobeView = () => {
 
   return <div ref={globeRef} className="globe-container" />;
 };
-
 function getLatitude(name: string): number {
-  const match = cryptids.find((c) => c.name === name);
-  return match?.location.includes('Brazil') ? -23.5 :
-    match?.location.includes('Philippines') ? 16.4 :
-      match?.location.includes('Scotland') ? 57.3 :
-        match?.location.includes('New Jersey') ? 39.5 :
-          match?.location.includes('New Mexico') ? 36.5 :
-            match?.location.includes('Kansas') ? 37.6 :
-              match?.location.includes('Wisconsin') ? 43.0 :
-                match?.location.includes('California') ? 35.4 :
-                  match?.location.includes('Utah') ? 40.2 :
-                    match?.location.includes('Washington') ? 47.5 :
-                      match?.location.includes('West Virginia') ? 38.9 : 20;
+  const match = cryptids.find((c) => c.name === name || c.id === name);
+  switch (match?.id) {
+    case 'curupira': return -23.5;
+    case 'aswang': return 16.4;
+    case 'loch-ness-monster': return 57.3;
+    case 'jersey-devil': return 39.5;
+    case 'el-chupacabra': return 36.5;
+    case 'headless-men': return 37.6;
+    case 'beast-of-bray-road': return 43.0;
+    case 'dark-watchers': return 35.4;
+    case 'skinwalker': return 40.2;
+    case 'sasquatch': return 47.5;
+    case 'mothman': return 38.9;
+    default: return 20;
+  }
 }
 
 function getLongitude(name: string): number {
-  const match = cryptids.find((c) => c.name === name);
-  return match?.location.includes('Brazil') ? -46.6 :
-    match?.location.includes('Philippines') ? 120.6 :
-      match?.location.includes('Scotland') ? -4.5 :
-        match?.location.includes('New Jersey') ? -74.7 :
-          match?.location.includes('New Mexico') ? -105.2 :
-            match?.location.includes('Kansas') ? -95.3 :
-              match?.location.includes('Wisconsin') ? -88.5 :
-                match?.location.includes('California') ? -121.7 :
-                  match?.location.includes('Utah') ? -109.6 :
-                    match?.location.includes('Washington') ? -122.3 :
-                      match?.location.includes('West Virginia') ? -82.1 : 0;
+  const match = cryptids.find((c) => c.name === name || c.id === name);
+  switch (match?.id) {
+    case 'curupira': return -46.6;
+    case 'aswang': return 120.6;
+    case 'loch-ness-monster': return -4.5;
+    case 'jersey-devil': return -74.7;
+    case 'el-chupacabra': return -105.2;
+    case 'headless-men': return -95.3;
+    case 'beast-of-bray-road': return -88.5;
+    case 'dark-watchers': return -121.7;
+    case 'skinwalker': return -109.6;
+    case 'sasquatch': return -122.3;
+    case 'mothman': return -82.1;
+    default: return 0;
+  }
 }
+
 
 export default GlobeView;
