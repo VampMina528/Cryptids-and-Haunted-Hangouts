@@ -7,7 +7,6 @@ const ForumPostList = () => {
     const { data, loading, error } = useQuery(GET_ALL_FORUM_POSTS);
 
     const [deletePost] = useMutation(DELETE_FORUM_POST, {
-        //refetchQueries: [{ query: GET_ALL_FORUM_POSTS }],
         update(cache, { data }, { variables }) {
             if (!variables?.id) return
 
@@ -57,7 +56,7 @@ const ForumPostList = () => {
     const [codename, setCodename] = useState<string | null>(null);
     useEffect(() => {
         const storedCodename = localStorage.getItem("cryptidCodename");
-        console.log("loaded codenam from localStorage:", storedCodename)
+        //console.log("loaded codenam from localStorage:", storedCodename)
         setCodename(storedCodename);
     }, []);
     

@@ -38,13 +38,14 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         }
       });
 
-      // const token = data.login.token;
-      // const codename = data.login.user.codename;
+      const token = data.loginUser.token;
+      const codename = data.loginUser.user.codename;
 
-      // localStorage.setItem("id_token", token);
-      // localStorage.setItem("cryptidCodename", codename);
-      // console.log("setting codename in localstorage", codename)
-      Auth.login(data.loginUser.token);
+      localStorage.setItem("id_token", token);
+      localStorage.setItem("cryptidCodename", codename);
+      console.log("setting codename in localstorage", codename)
+      Auth.login(token);
+      console.log("codename from storage:", codename)
       handleModalClose();
       navigate("/forums");
     } catch (err) {
