@@ -69,7 +69,7 @@ export const hauntedData = [
     description:
       'This historic inn is haunted by ghostly animals, disembodied voices, and a mysterious woman in white. Guests report doors opening on their own and shadowy figures in the halls.',
     images: ['Leatherlockbrick.jpg', 'leatherlocktan.png', 'Leatherock-Hotel-and-Museum-Cherryvale.jpg'],
-    externalLink: 'https://www.kansashauntedhouses.com/real-haunt/leatherock-hotel-museum.html',
+    externalLink: 'https://www.kansashauntedhouses.com/real-haunt/leatherlock-hotel-museum.html',
   },
   {
     id: 'dream-beach',

@@ -99,30 +99,14 @@ button:hover {
 /* === SEARCH BUTTONS === */
 .search-buttons {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 5;
+  bottom: 12vh;
+  left: 4vw;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.2rem;
 }
 
-.search-btn {
-  font-family: 'Creepster', cursive;
-  background-color: #111;
-  color: #ffcc00;
-  border: 2px solid #ffcc00;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.search-btn:hover {
-  background-color: #ffcc00;
-  color: #111;
-  box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
-}
 
 /* === GLOBE === */
 .globe-container {
@@ -374,3 +358,21 @@ canvas {
   margin-top: 1rem;
   text-align: center;
 }
+.lantern-glow-button {
+  font-family: 'Creepster', cursive;
+  background-color: #220000;
+  color: #ff4444;
+  border: 2px solid #ff4444;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px red, 0 0 24px crimson;
+}
+
+.lantern-glow-button:hover {
+  background-color: #330000;
+  color: #fff0f0;
+  box-shadow: 0 0 20px crimson, 0 0 30px red;
+}
+
