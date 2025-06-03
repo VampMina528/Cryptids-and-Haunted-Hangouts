@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 
 const server = new ApolloServer({
  typeDefs,
-  resolvers
+  resolvers, 
 });
 
 const startApolloServer = async () => {
