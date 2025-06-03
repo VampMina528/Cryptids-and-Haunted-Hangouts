@@ -51,6 +51,18 @@ class AuthService {
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
+
+  getCodename(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const decoded = jwtDecode<UserToken>(token);
+      return decoded.name || null;
+    } catch (err) {
+      return null;
+    }
+  }
 }
 
 export default new AuthService();
