@@ -43,6 +43,9 @@ button:focus-visible {
   border-radius: 0.5rem;
 }
 
+.write-post-button {
+  margin-top: 2rem;
+}
 
 .forum-buttons {
   display: flex;
@@ -98,7 +101,10 @@ textarea, .forum-buttons {
   margin: 0.5rem 0 1rem 0;
   white-space: pre-wrap;
   line-height: 1.5;
+  color: red;
 }
+
+
 
 .forum-post textarea {
   width: 100%;
@@ -111,3 +117,103 @@ textarea, .forum-buttons {
   resize: vertical;
 }
 
+/* === Responsive Breakpoints === */
+
+/* Small phones (375x667px) */
+@media (max-width: 400px) {
+  .site-title {
+    font-size: 1.3rem;
+  }
+
+  header.site-header {
+    padding: 0.5rem 1rem;
+  }
+
+  body {
+    padding-top: 90px;
+  }
+
+  .header-subtitle {
+    font-size: 0.75rem;
+    margin: 0.3rem 0;
+    padding: 0 1rem;
+  }
+
+  .cryptid-image,
+  .search-input,
+  .forum-post-list,
+  .cryptid-detail-container {
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header-buttons button {
+    width: 100%;
+    max-width: 250px;
+    font-size: 0.9rem;
+  }
+
+  .search-buttons {
+    bottom: 8vh;
+    left: 1rem;
+  }
+
+  .codename-display {
+    position: static;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+}
+
+/* Tablets (1024x1366px) */
+@media (max-width: 1024px) {
+  .codename-display {
+    position: static;
+    margin-top: 0.5rem;
+    display: block;
+    text-align: center;
+  }
+
+  .cryptid-detail-container,
+  .forum-post-list {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .cryptid-image {
+    max-width: 90%;
+  }
+
+  .header-buttons {
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .search-buttons {
+    left: 2vw;
+  }
+}
+
+/* Laptops */
+@media (min-width: 1025px) {
+  .cryptid-image {
+    max-width: 600px;
+  }
+
+  .forum-post-list,
+  .forum-post-form {
+    max-width: 800px;
+  }
+
+  .search-buttons {
+    left: 4vw;
+  }
+}

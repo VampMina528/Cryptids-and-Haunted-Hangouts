@@ -13,7 +13,7 @@ const Header = () => {
   const [warningMessage, setWarningMessage] = useState("");
 
   const isLoggedIn = Auth.loggedIn();
-  const codename = localStorage.getItem("cryptidCodename");
+  const codename = Auth.getCodename();
   const isForumPage = location.pathname === "/forums";
 
   const handleForumClick = () => {
@@ -40,6 +40,10 @@ const Header = () => {
         Explore spine-chilling creatures and the haunted places they stalk. Choose your cryptid, uncover local legends, and prepare for an eerie journey through myth, mystery, and madness...
       </p>
 
+      {isLoggedIn && codename && (
+        <span className="codename-display">Welcome back, {codename}</span>
+      )}
+
       <div className="header-buttons">
         {/* Not logged in: show modals */}
         {!isLoggedIn && (
@@ -52,9 +56,6 @@ const Header = () => {
         {/* Logged in: show codename + nav buttons */}
         {isLoggedIn && (
           <>
-            {codename && (
-              <span className="codename-display">Welcome, {codename}</span>
-            )}
             {isForumPage ? (
               <>
                 <button onClick ={() => navigate("/")} className="header-nav-button">

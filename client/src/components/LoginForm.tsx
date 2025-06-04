@@ -38,7 +38,14 @@ const LoginForm = ({ handleModalClose }: { handleModalClose: () => void }) => {
         }
       });
 
-      Auth.login(data.loginUser.token);
+      const token = data.loginUser.token;
+      const codename = data.loginUser.user.codename;
+
+      localStorage.setItem("id_token", token);
+      localStorage.setItem("cryptidCodename", codename);
+      console.log("setting codename in localstorage", codename)
+      Auth.login(token);
+      console.log("codename from storage:", codename)
       handleModalClose();
       navigate("/forums");
     } catch (err) {

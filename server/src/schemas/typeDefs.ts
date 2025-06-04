@@ -28,6 +28,11 @@ const typeDefs = `
         user: User!
     }
 
+    type AuthPayload {
+        token: String!
+        user: User!
+    }
+
     type HauntedPlace {
         name: String
         description: String
@@ -51,7 +56,7 @@ const typeDefs = `
 
     type Mutation {
         addUser(input: AddUserInput!): Auth
-        loginUser(codename: String!, password: String!): Auth
+        loginUser(codename: String!, password: String!): AuthPayload
         addForumPost(input: AddForumPostInput!): ForumPost
         updateForumPost(id: ID!, content: String!): ForumPost
         deleteForumPost(id: ID!): Boolean
