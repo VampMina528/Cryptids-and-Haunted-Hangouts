@@ -42,12 +42,9 @@ jobs:
             npm run start:server &
             npx wait-on http://localhost:3001
             curl -I http://localhost:3001
-
-     # - name: Run Cypress Tests
-      #  run: npx cypress run --browser electron
+            
       - name: Deploy
-        # Only run this step if the branch is main
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
