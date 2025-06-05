@@ -22,7 +22,7 @@ const GlobeView = () => {
       ...c,
       lat: getLatitude(c.name),
       lng: getLongitude(c.name),
-      altitude: 0.01 // Fixes disappearing icon issue by raising icon slightly above surface
+      altitude: 0.05 
     }))
   )
   .htmlElement((d: any) => {
