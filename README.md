@@ -9,13 +9,13 @@
 
 ## 🌟 Project Overview
 
-**Creepy Cryptids and Haunted Hangouts** is a collaborative full-stack application where users can explore the lore of infamous cryptids and the haunted locations linked to their sightings. With an interactive 3D globe, eerie background music, and detailed storytelling, this app creates an unforgettable supernatural user experience.
+**Creepy Cryptids and Haunted Hangouts** is a collaborative full-stack application where users can explore the lore of infamous cryptids and the haunted locations linked to their sightings. With an interactive 3D globe, eerie background music, and detailed storytelling, this app creates an unforgettable supernatural user experience. The user can become a member using their own codename and share thoughts or experiences in the Believers & Naysayers Forum.
 
 ### 👥 Collaborators
 
-* Mina Draper-Hammond
-* Fischer Almanza
-* Danny Wortmann
+* [Mina Draper-Hammond](https://github.com/VampMina528)
+* [Fischer Almanza](https://github.com/Falmanza94)
+* [Danny Wortmann](https://github.com/dlwortmann)
 
 ## 🚀 Key Features
 
@@ -23,7 +23,7 @@
 * 🧟 Cryptid detail pages with lore, images, and YouTube sound links
 * 🏪 Haunted hangout pages with regional ghost stories and photos
 * 🔊 “Cryptid Sonnets” music player (randomized playlist, volume, skip, loop)
-* 🔐 JWT authentication for protected access
+* 🔐 JWT authentication for protected access to post on Believers & Naysayers Forum
 * 📱 Fully responsive design and professional UI/UX
 * ☁️ Deployed on Render with persistent MongoDB Atlas database
 
@@ -39,9 +39,10 @@
 
 ## 🖼️ Screenshots
 
-<img src="./client/src/assets/Screenshot%202025-05-29%20182602.png" alt="Homepage Screenshot" width="600" />
-<img src="./client/src/assets/Screenshot%202025-05-29%20182651.png" alt="Cryptid Detail Page" width="600" />
-<img src="./client/src/assets/Screenshot%202025-05-29%20182724.png" alt="Haunted Location Page" width="600" />
+<img src="./client/src/assets/homepage-screenshot.png" alt="Homepage" width="600" /> Homepage
+<img src="./client/src/assets/cryptid-detail-screenshot.png" alt="Cryptid Detail Page" width="600" /> Cryptid Detail
+<img src="./client/src/assets/haunted-location-screenshot.png" alt="Haunted Location Page" width="600" /> Haunted Location
+<img src="./client/src/assets/forum-page-screenshot.png" alt="Forum Page" width="600" /> Forum
 
 ## 📂 Installation & Usage
 
@@ -71,7 +72,7 @@ MONGODB_URI=yourMongoDBAtlasURI
 4. Start the development server
 
 ```bash
-npm run dev
+npm run develop
 ```
 
 ## 📈 Future Enhancements
@@ -80,6 +81,8 @@ npm run dev
 * Enable user-contributed cryptid/haunted locations images 
 * Implement continent or keyword search
 * Include accessibility improvements and screen reader support
+* Add the ability to comment to a specific member's post in the Believers & Naysayers Forum
+* Create a Monster Merchandise shop
 
 ## 📜 License
 
