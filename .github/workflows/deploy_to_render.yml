@@ -1,54 +1,60 @@
-# name: Deploy To Render
+name: Deploy To Render
 
-# on:
-#   push:
-#     branches: [master]
-#   pull_request:
-#     branches:
-#       - master
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches:
+      - master
 
-# jobs:
-#   ci:
-#     name: Deploy To Render
-#     runs-on: ubuntu-latest
+jobs:
+  ci:
+    name: Deploy To Render
+    runs-on: ubuntu-latest
 
-#     services:
-#       mongo:
-#         image: mongo:6
-#         ports:
-#           - 27017:27017
-#         options: >-
-#           --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'"
-#           --health-interval=10s
-#           --health-timeout=5s
-#           --health-retries=5
+    services:
+      mongo:
+        image: mongo:6
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
-#     steps:
-#       - uses: actions/checkout@v4
-#       - name: Install dependencies
-#         run: |
-#             npm install
-#             cd server && npm install
-#             cd ../client && npm install
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+            npm install
+            cd server && npm install
+            cd ../client && npm install
 
-#       - name: Install wait-on
-#         run: npm install -g wait-on
+      - name: Install wait-on
+        run: npm install -g wait-on
 
-#       - name: Build App
-#         run: npm run build  
-
-#       - name: Start server and wait
-#         run: |
-#             npm run start:server &
-#             npx wait-on http://localhost:3001
-#             curl -I http://localhost:3001
-
-#      # - name: Run Cypress Tests
-#       #  run: npx cypress run --browser electron
-#       - name: Deploy
-#         # Only run this step if the branch is main
-#         if: github.ref == 'refs/heads/main'
-#         env:
-#           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
-#         run: |
-#           curl "$deploy_url"
+      - name: Build App
+        run: |
+          npm run build  
+        env:
+          NODE_ENV: production
+      
+      - name: Start server and wait
+        run: |
+          echo "Starting server..."
+          npm run start:server &
+          sleep 5
+          echo "Checking if server is reachable..."
+          curl -I http://localhost:3001 || echo "Server not responding to curl"
+          echo "Waiting for server to be ready..."
+          npx wait-on http://localhost:3001
+        env:
+          NODE_ENV: production
+      
+      - name: Deploy
+        if: github.ref == 'refs/heads/master'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
