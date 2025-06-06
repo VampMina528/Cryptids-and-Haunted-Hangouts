@@ -19,7 +19,7 @@
 
 ## 🚀 Key Features
 
-* 🌐 Interactive spinning globe with clickable cryptid icons
+* 🌐 Library/API: Globe.gl - Interactive spinning globe with clickable cryptid icons
 * 🧟 Cryptid detail pages with lore, images, and YouTube sound links
 * 🏪 Haunted hangout pages with regional ghost stories and photos
 * 🔊 “Cryptid Sonnets” music player (randomized playlist, volume, skip, loop)
